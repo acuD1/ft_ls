@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:39:15 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/14 08:40:23 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/19 11:50:23 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+#include <stdio.h>
 
 int		main(void)
 {
 	ft_ls_test();
+	printf("%d\n", 2);
+	mini_printf(1, "2");
+	printf("\n");
 	return (0);
 }

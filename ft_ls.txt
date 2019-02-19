@@ -1,0 +1,11 @@
+mini-printf :
+	- Input read (While)
+		- Check if '%' while adding input to Buffer
+		if %
+			- Check next args
+				- 's'
+				- 'd'
+				- 'c'
+				=> Concat buffer, then get_args
+					=> format buffer from args
+						=> print

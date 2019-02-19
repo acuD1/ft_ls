@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/14 08:58:27 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/19 12:35:14 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 # include "../libft/includes/libft.h"
 # include <stdarg.h>
 
-void	ft_ls_test(void);
+# define BUFF_SIZE 4096
 
+void	ft_ls_test(void);
+void	mini_printf(int fd, const char *str, ...);
 
 #endif
