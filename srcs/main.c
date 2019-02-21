@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:39:15 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/19 11:50:23 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/21 13:12:14 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,38 @@
 
 int		main(void)
 {
+	int d = 123;
+	int c = '\t';
+	int cc = 32;
+	char *null = NULL;
 	ft_ls_test();
-	printf("%d\n", 2);
-	mini_printf(1, "2");
-	printf("\n");
+	/*
+	**
+	*/
+	dprintf(1, "TEST INT REAL |%d|  |%d|", d, d);
+	ft_putchar('\n');
+	mini_printf(1, "TEST INT MINI |%d|  |%d|", d, d);
+	ft_putchar('\n');
+	/*
+	**
+	*/
+	dprintf(1, "TEST CHAR REAL |%c|  |%c|", cc, c);
+	ft_putchar('\n');
+	mini_printf(1, "TEST CHAR MINI |%c|  |%c|", cc, c);
+	ft_putchar('\n');
+	/*
+	**
+	*/
+	dprintf(1, "TEST STRING REAL |%s|\\  |%s|\t", null, "\\Test kappa\t");
+	ft_putchar('\n');
+	mini_printf(1, "TEST STRING MINI |%s|\\  |%s|\t", null, "\\Test Kappa\t");
+	ft_putchar('\n');
+	/*
+	**
+	*/
+	dprintf(1, "%.*s", 2, "126666");
+	ft_putchar('\n');
+	mini_printf(1, "%.*s", 2, "126666");
+	ft_putchar('\n');
 	return (0);
 }

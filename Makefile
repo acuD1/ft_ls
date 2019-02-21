@@ -57,8 +57,10 @@ L_PATH = ./libft/
 # Files
 
 SRC += $(S_PATH)main.c
+SRC += $(S_PATH)tools.c
 SRC += $(S_PATH)ft_ls_test.c
 SRC += $(S_PATH)ft_mini_printf.c
+SRC += $(S_PATH)mini_printf_parser.c
 
 # Objects and Headers
 
@@ -68,7 +70,7 @@ LIB = $(L_PATH)$(LNAME)
 
 # Variables
 
-C_GCC = gcc
+C_GCC = gcc -g
 CMPLC = $(C_GCC) -c -I$(H_PATH)
 CMPLO = $(C_GCC) -o
 BUILD = $(B_PATH) $(O_PATH)
