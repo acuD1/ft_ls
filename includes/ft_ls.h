@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/22 08:55:29 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/22 10:45:28 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,16 @@
 
 typedef struct	s_mprintf
 {
-	int		pad;
-	int		pad1;
-	int		pad2;
-	int		neg;
+	int			pad;
+	int			pad1;
+	int			pad2;
+	int			neg;
 }				t_mprintf;
 
 void	ft_ls_test(void);
 void	mprintf(int fd, const char *str, ...);
-void	buff_fill_int(int arg, char *buff);
-void	buff_fill_char(int c, char *buff);
-void	buff_fill_str(char *str, char *buff);
-void	dup_and_clean(char *buff, char *tmp);
+int		s_mpf_padding(t_mprintf *s_mpf, int pad1, int pad2);
+void	cat_and_clean(char *buff, char *tmp, char *var);
 
 #include <stdio.h>
 #endif
