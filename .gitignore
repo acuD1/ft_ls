@@ -19,6 +19,9 @@ libft/*.a
 # Debug files
 **/*.dSYM
 
+# Swap files
+**/*.swp
+
 # Vscode
 .vscode
 *.json

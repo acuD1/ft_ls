@@ -119,7 +119,7 @@ SRC += $(S_PATH)ft_strsub.c
 SRC += $(S_PATH)ft_strtrim.c
 SRC += $(S_PATH)ft_tolower.c
 SRC += $(S_PATH)ft_toupper.c
-SRC += $(S_PATH)get_next_line.c
+#SRC += $(S_PATH)get_next_line.c Leaks??
 
 # Objects and Headers
 

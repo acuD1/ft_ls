@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:54:05 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/21 13:14:22 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/22 09:04:07 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 static void	get_args(va_list args, char *buff, char *str)
 {
-	int		i;
-	char	*printf_option;
+	int			i;
+	t_mprintf	*s_mpf;
+	char		*mprintf_opt;
 
 	i = 0;
-	printf_option = "%dcs";
-	while (str[i] && ft_strchr(printf_option, str[i]))
+	if (!(s_mpf = (t_mprintf*)malloc(sizeof(t_mprintf))))
+		return ;
+	ft_bzero(s_mpf, sizeof(t_mprintf));
+	mprintf_opt = "%dcs";
+	while (str[i] && ft_strchr(mprintf_opt, str[i]))
 	{
 		if (str[i] == 'd')
 			buff_fill_int(va_arg(args, int), buff);
@@ -30,12 +34,13 @@ static void	get_args(va_list args, char *buff, char *str)
 		i++;
 	}
 	ft_strdel(&str);
+	free(s_mpf);
 }
 
-void		mini_printf(int fd, const char *str, ...)
+void		mprintf(int fd, const char *str, ...)
 {
-	va_list	args;
-	char	*buff;
+	va_list		args;
+	char		*buff;
 
 	va_start(args, str);
 	buff = ft_strnew(BUFF_SIZE + 1);
