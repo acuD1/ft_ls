@@ -56,10 +56,12 @@ L_PATH = ./libft/
 
 # Files
 
-SRC += $(S_PATH)main.c
-SRC += $(S_PATH)ft_ls_test.c
+SRC += $(S_PATH)ft_ls.c
 SRC += $(S_PATH)ft_mprintf.c
 SRC += $(S_PATH)mprintf_tools.c
+SRC += $(S_PATH)args_parser.c
+
+SRC += $(S_PATH)tools.c
 
 # Objects and Headers
 
