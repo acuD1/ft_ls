@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:52:57 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/24 14:50:44 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/24 14:54:58 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	usage(void)
 	ft_putendl("Usage : ./ft_ls [-Ralrt] [file ...]");
 }
 
-int		set_option(t_ls *option, char arg)
+static void	set_option(t_ls *option, char arg)
 {
 	if (arg == 'R')
 		option->R = 1;
@@ -31,14 +31,10 @@ int		set_option(t_ls *option, char arg)
 	else if (arg == 't')
 		option->t = 1;
 	else
-	{
 		usage();
-		return (0);
-	}
-	return (1);
 }
 
-void	get_option(int ac, char **av, t_ls *option)
+void		get_option(int ac, char **av, t_ls *option)
 {
 	int		i;
 	int		j;
