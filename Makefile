@@ -58,8 +58,8 @@ L_PATH = ./libft/
 
 SRC += $(S_PATH)main.c
 SRC += $(S_PATH)ft_ls_test.c
-SRC += $(S_PATH)ft_mini_printf.c
-SRC += $(S_PATH)mini_printf_tools.c
+SRC += $(S_PATH)ft_mprintf.c
+SRC += $(S_PATH)mprintf_tools.c
 
 # Objects and Headers
 
