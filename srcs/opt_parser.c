@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/25 11:55:41 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:58:05 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,23 @@ static void	get_ls_option(t_ls *ls, char arg)
 
 int		get_ls_args(int ac, char **av, int i, t_list **args)
 {
-	(void)ac;
-	(void)av;
-	(void)i;
-	char *tmp;
+	int		check;
+	char	*tmp;
 
-	tmp = ft_strdup(".");
-	ft_lstpushback(args, ft_lstnew(tmp, ft_strlen(tmp)));
-	free(tmp);
+	check = i;
+	while (i < ac)
+	{
+		if (!(av[i]))
+			tmp = ft_strdup(".");
+		else
+		{
+			tmp = ft_strnew(ft_strlen(av[i]));
+			ft_strcpy(tmp,av[i]);
+		}
+		ft_lstpushback(args, ft_lstnew(tmp, ft_strlen(tmp)));
+		free(tmp);
+		i++;
+	}
 	return (1);
 }
 
@@ -67,6 +76,8 @@ t_list		*ls_parser(int ac, char **av, t_ls *ls)
 			while (av[i][j])
 				get_ls_option(ls, av[i][j++]);
 		}
+		else
+			break;
 	}
 	get_ls_args(ac, av, i, &args);
 	return (args);

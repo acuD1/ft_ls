@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/25 12:02:06 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:49:53 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_list			*ls_parser(int ac, char **av, t_ls *ls);
 
 void			usage(void);
 void			print_struct(t_ls option);
+void			print_lst(t_list *args);
 
 /*
 **	Tools

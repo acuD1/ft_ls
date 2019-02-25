@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/25 11:25:37 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:49:31 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,26 @@ opt.l = |%d|\n\
 opt.r = |%d|\n\
 opt.t = |%d|\n",\
 	ls.opt.R, ls.opt.a, ls.opt.l, ls.opt.r, ls.opt.t);
+}
+
+void	print_lst(t_list *args)
+{
+	int		i;
+	t_list	*node;
+
+	i = 1;
+	node = args;
+	if (!args)
+	{
+		ft_mprintf(1, "No args set, list empty!\n");
+		return ;
+	}
+	while (node != NULL)
+	{
+		ft_mprintf(1, "arg[%d] = |%s|\n", i, node->content);
+		node = node->next;
+		i++;
+	}
 }
 
 void	usage(void)
