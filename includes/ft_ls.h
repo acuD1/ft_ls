@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/25 10:57:29 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/25 12:02:06 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef	struct	s_opt
 
 typedef	struct	s_ls
 {
+//	t_list		*filenames;
 	t_opt		opt;
 }				t_ls;
 
@@ -62,8 +63,8 @@ int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
 **	parser
 */
 
-int				get_option(int ac, char **av, t_ls *ls);
-void			get_files(int ac, char **av,t_ls *ls);
+t_list			*ls_parser(int ac, char **av, t_ls *ls);
+//void			get_files(int ac, char **av,t_ls *ls);
 
 /*
 **	Errors
@@ -75,5 +76,11 @@ void			get_files(int ac, char **av,t_ls *ls);
 
 void			usage(void);
 void			print_struct(t_ls option);
+
+/*
+**	Tools
+*/
+
+void	ft_free_list(t_list *list);
 
 #endif

@@ -63,6 +63,7 @@ SRC += $(S_PATH)args_parser.c
 SRC += $(S_PATH)opt_parser.c
 SRC += $(S_PATH)error.c
 SRC += $(S_PATH)display.c
+SRC += $(S_PATH)tools.c
 
 # Objects and Headers
 
