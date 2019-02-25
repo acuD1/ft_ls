@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/24 13:04:49 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/25 10:40:27 by arsciand         ###   ########.fr       */
+/*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
+/*   Updated: 2019/02/25 10:52:50 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,10 @@ opt.l = |%d|\n\
 opt.r = |%d|\n\
 opt.t = |%d|\n",\
 	ls.opt.R, ls.opt.a, ls.opt.l, ls.opt.r, ls.opt.t);
+}
+
+void	usage(void)
+{
+	ft_putendl("ls: illegal option -- -");
+	ft_putendl("Usage : ./ft_ls [-Ralrt] [file ...]");
 }
