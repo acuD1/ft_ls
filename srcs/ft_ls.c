@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/24 14:47:28 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:39:19 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 int		main(int ac, char **av)
 {
-	t_ls	*option;
+	t_ls	ls;
 
-	if (!(option = (t_ls*)malloc(sizeof(t_ls))))
-		return (0);
-	ft_bzero(option, sizeof(t_ls));
-	get_option(ac, av, option);
-//	print_struct(option);
-	free(option);
+	ft_bzero(&ls, sizeof(t_ls));
+	get_option(ac, av, &ls);
+	print_struct(ls);
 	return (0);
 }

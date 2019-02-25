@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/24 14:23:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:34:12 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,18 @@ typedef struct	s_mprintf
 	int			space;
 }				t_mprintf;
 
-typedef struct	s_ls
+typedef	struct	s_opt
 {
 	int			R;
 	int			a;
 	int			l;
 	int			r;
 	int			t;
+}				t_opt;
+
+typedef	struct	s_ls
+{
+	t_opt		opt;
 }				t_ls;
 
 void			ft_ls_test(void);
@@ -44,8 +49,8 @@ void			ft_mprintf(int fd, const char *str, ...);
 int				buff_fill_int(int arg, char *buff, t_mprintf *s_mpf);
 int				buff_fill_char(int arg, char *buff, t_mprintf *s_mpf);
 int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
-void			get_option(int ac, char **av, t_ls *option);
+int				get_option(int ac, char **av, t_ls *ls);
 
-void			print_struct(t_ls *option);
+void			print_struct(t_ls option);
 
 #endif
