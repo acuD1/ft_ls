@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/25 13:30:33 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/26 09:40:25 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int		main(int ac, char **av)
 	t_ls	ls;
 	t_list	*args;
 
+	args = NULL;
 	ft_bzero(&ls, sizeof(t_ls));
-	args = ls_parser(ac, av, &ls);
+	args = ls_parser(ac, av, &ls, args);
 	exec_args(&ls, args);
 	print_lst(args);
 	print_struct(ls);
