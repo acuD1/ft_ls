@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_parser.c                                       :+:      :+:    :+:   */
+/*   input_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/26 09:39:34 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/26 09:58:08 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	get_ls_option(t_ls *ls, char arg)
 		usage();
 }
 
-int			get_ls_args(int ac, char **av, int i, t_list **args)
+static void	get_ls_args(int ac, char **av, int i, t_list **args)
 {
 	char	*tmp;
 
@@ -44,11 +44,10 @@ int			get_ls_args(int ac, char **av, int i, t_list **args)
 			free(tmp);
 			i++;
 		}
-		return (0);
+		return ;
 	}
 	ft_lstpushback(args, ft_lstnew(tmp, ft_strlen(tmp)));
 	free(tmp);
-	return (1);
 }
 
 t_list		*ls_parser(int ac, char **av, t_ls *ls, t_list *args)
