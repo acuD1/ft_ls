@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/28 14:23:32 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:40:12 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/stat.h>
 # include <unistd.h>
 # include <stdio.h>
+
+# define VARS_DB (((t_ls*)((t_list*)vars->content))
 
 typedef struct	s_mprintf
 {
@@ -42,6 +44,7 @@ typedef	struct	s_opt
 
 typedef	struct	s_ls
 {
+	char		*var;
 	char		type;
 }				t_ls;
 
@@ -58,28 +61,28 @@ int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
 **	parser
 */
 
-t_list			*ls_parser(int ac, char **av, t_opt *opt);
+t_list			*vars_parser(int ac, char **av, t_opt *opt, t_ls *db);
 
 /*
 **	db
 */
 
-void			fetch_db(t_ls *db, t_list *node);
-t_ls			*init_db(t_list *args);
+t_ls			*fetch_db(t_ls *db, char *av);
+t_ls			*init_db(t_list *vars, t_ls *db);
 char			get_type(struct stat d_stat);
 
 /*
 **	Display
 */
 
-void			usage(void);
+t_list			*usage(void);
 void			print_opt(t_opt opt);
-void			print_args(t_list *args);
+void			print_vars_db(t_list *vars);
 
 /*
 **	Tools
 */
 
-void			free_list(t_list *args);
+void			free_vars(t_list *args);
 
 #endif

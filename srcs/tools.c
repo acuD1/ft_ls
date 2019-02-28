@@ -6,21 +6,22 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:01:09 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/28 14:06:27 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:40:32 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	free_list(t_list *args)
+void	free_vars(t_list *vars)
 {
-	t_list	*next;
+	t_list	*node;
 
-	while (args != NULL)
+	while (vars != NULL)
 	{
-		free(args->content);
-		next = args;
-		args = args->next;
-		free(next);
+		free(VARS_DB->var));
+		free(vars->content);
+		node = vars;
+		vars = vars->next;
+		free(node);
 	}
 }

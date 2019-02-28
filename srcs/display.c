@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/28 14:14:11 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:35:53 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,29 @@ PRINT | opt.t = |%d|\n",\
 	opt.big_r, opt.a, opt.l, opt.r, opt.t);
 }
 
-void	print_args(t_list *args)
+void	print_vars_db(t_list *vars)
 {
 	int		i;
-	t_list	*node;
 
 	i = 1;
-	node = args;
-	if (!(args))
+	if (!(vars))
 	{
-		printf("--> No args set, list empty! <--\n");
+		printf("--> No vars set, list empty! <--\n");
 		return ;
 	}
 	printf("***\n");
-	while (node != NULL)
+	while (vars != NULL)
 	{
-		printf("PRINT | arg[%d] = |%s|\n", i, node->content);
-		node = node->next;
+		printf("PRINT | var[%d] = |%s|\n", i, VARS_DB->var));
+		printf("PRINT | type[%d] = |%c|\n", i, VARS_DB->type));
+		vars = vars->next;
 		i++;
 	}
 }
 
-void	usage(void)
+t_list	*usage(void)
 {
 	ft_putendl("ls: illegal option -- -");
 	ft_putendl("Usage : ./ft_ls [-Ralrt] [file ...]");
+	return (NULL);
 }

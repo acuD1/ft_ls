@@ -6,55 +6,50 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/28 14:18:01 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:27:55 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	get_ls_option(t_opt *opt, char arg)
+static int		get_opt(t_opt *opt, char av)
 {
-	if (arg == 'R')
+	if (!(ft_strchr("-Ralrt", av)))
+		return (0);
+	if (av == 'R')
 		opt->big_r = 1;
-	else if (arg == 'a')
+	else if (av == 'a')
 		opt->a = 1;
-	else if (arg == 'l')
+	else if (av == 'l')
 		opt->l = 1;
-	else if (arg == 'r')
+	else if (av == 'r')
 		opt->r = 1;
-	else if (arg == 't')
+	else if (av == 't')
 		opt->t = 1;
-	else
-		usage();
+	return (1);
 }
 
-t_list		*get_ls_args(int ac, char **av, int i)
+static t_list	*get_vars(int ac, char **av, int i, t_ls *db)
 {
-	t_list	*args;
-	char	*tmp;
+	t_list	*vars;
 
-	args = NULL;
+	vars = NULL;
 	if (!(av[i]))
-		tmp = ft_strdup(".");
+	{
+		ft_lstpushback(&vars,
+			ft_lstnew(fetch_db(db, "."), sizeof(t_ls)));
+		return (vars);
+	}
 	else
 	{
 		while (i < ac)
-		{
-			tmp = ft_strdup(av[i]);
-			ft_strcpy(tmp, av[i]);
-			ft_lstpushback(&args,
-					ft_lstnew(tmp, sizeof(char) * (ft_strlen(tmp) + 1)));
-			free(tmp);
-			i++;
-		}
-		return (args);
+			ft_lstpushback(&vars,
+				ft_lstnew(fetch_db(db, av[i++]), sizeof(t_ls)));
+		return (vars);
 	}
-	ft_lstpushback(&args, ft_lstnew(tmp, sizeof(char) * (ft_strlen(tmp) + 1)));
-	return (args);
-	free(tmp);
 }
 
-t_list		*ls_parser(int ac, char **av, t_opt *opt)
+t_list			*vars_parser(int ac, char **av, t_opt *opt, t_ls *db)
 {
 	int		i;
 	int		j;
@@ -62,22 +57,22 @@ t_list		*ls_parser(int ac, char **av, t_opt *opt)
 	i = 0;
 	while (++i < ac)
 	{
-		j = 1;
+		j = 0;
 		if (av[i][0] == '-' && av[i][1] == '-' && av[i][2])
-		{
-			usage();
-			return (NULL);
-		}
+			return (usage());
 		else if (av[i][0] == '-' && av[i][1] == '-')
 		{
 			i++;
 			break ;
 		}
 		else if (av[i][0] == '-' && av[i][1])
+		{
 			while (av[i][j])
-				get_ls_option(opt, av[i][j++]);
+				if (!(get_opt(opt, av[i][j++])))
+					return (usage());
+		}
 		else
 			break ;
 	}
-	return (get_ls_args(ac, av, i));
+	return (get_vars(ac, av, i, db));
 }
