@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/26 09:40:16 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:23:32 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <dirent.h>
-
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
 # include <stdio.h>
 
 typedef struct	s_mprintf
@@ -40,14 +42,8 @@ typedef	struct	s_opt
 
 typedef	struct	s_ls
 {
-	t_opt		opt;
+	char		type;
 }				t_ls;
-
-/*
-**	Init
-*/
-
-void			ft_ls(const char *str);
 
 /*
 **	mprintf
@@ -62,24 +58,28 @@ int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
 **	parser
 */
 
-t_list			*ls_parser(int ac, char **av, t_ls *ls, t_list *args);
+t_list			*ls_parser(int ac, char **av, t_opt *opt);
 
 /*
-**	Errors
+**	db
 */
+
+void			fetch_db(t_ls *db, t_list *node);
+t_ls			*init_db(t_list *args);
+char			get_type(struct stat d_stat);
 
 /*
 **	Display
 */
 
 void			usage(void);
-void			print_struct(t_ls option);
-void			print_lst(t_list *args);
+void			print_opt(t_opt opt);
+void			print_args(t_list *args);
 
 /*
 **	Tools
 */
 
-void			ft_free_list(t_list *list);
+void			free_list(t_list *args);
 
 #endif

@@ -60,9 +60,10 @@ SRC += $(S_PATH)ft_ls.c
 SRC += $(S_PATH)ft_mprintf.c
 SRC += $(S_PATH)mprintf_tools.c
 SRC += $(S_PATH)input_parser.c
-SRC += $(S_PATH)error.c
 SRC += $(S_PATH)display.c
 SRC += $(S_PATH)tools.c
+SRC += $(S_PATH)db_tools.c
+SRC += $(S_PATH)get_type.c
 
 # Objects and Headers
 

@@ -6,32 +6,34 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/26 09:58:08 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:18:01 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	get_ls_option(t_ls *ls, char arg)
+static void	get_ls_option(t_opt *opt, char arg)
 {
 	if (arg == 'R')
-		ls->opt.big_r = 1;
+		opt->big_r = 1;
 	else if (arg == 'a')
-		ls->opt.a = 1;
+		opt->a = 1;
 	else if (arg == 'l')
-		ls->opt.l = 1;
+		opt->l = 1;
 	else if (arg == 'r')
-		ls->opt.r = 1;
+		opt->r = 1;
 	else if (arg == 't')
-		ls->opt.t = 1;
+		opt->t = 1;
 	else
 		usage();
 }
 
-static void	get_ls_args(int ac, char **av, int i, t_list **args)
+t_list		*get_ls_args(int ac, char **av, int i)
 {
+	t_list	*args;
 	char	*tmp;
 
+	args = NULL;
 	if (!(av[i]))
 		tmp = ft_strdup(".");
 	else
@@ -40,17 +42,19 @@ static void	get_ls_args(int ac, char **av, int i, t_list **args)
 		{
 			tmp = ft_strdup(av[i]);
 			ft_strcpy(tmp, av[i]);
-			ft_lstpushback(args, ft_lstnew(tmp, ft_strlen(tmp)));
+			ft_lstpushback(&args,
+					ft_lstnew(tmp, sizeof(char) * (ft_strlen(tmp) + 1)));
 			free(tmp);
 			i++;
 		}
-		return ;
+		return (args);
 	}
-	ft_lstpushback(args, ft_lstnew(tmp, ft_strlen(tmp)));
+	ft_lstpushback(&args, ft_lstnew(tmp, sizeof(char) * (ft_strlen(tmp) + 1)));
+	return (args);
 	free(tmp);
 }
 
-t_list		*ls_parser(int ac, char **av, t_ls *ls, t_list *args)
+t_list		*ls_parser(int ac, char **av, t_opt *opt)
 {
 	int		i;
 	int		j;
@@ -71,10 +75,9 @@ t_list		*ls_parser(int ac, char **av, t_ls *ls, t_list *args)
 		}
 		else if (av[i][0] == '-' && av[i][1])
 			while (av[i][j])
-				get_ls_option(ls, av[i][j++]);
+				get_ls_option(opt, av[i][j++]);
 		else
 			break ;
 	}
-	get_ls_args(ac, av, i, &args);
-	return (args);
+	return (get_ls_args(ac, av, i));
 }

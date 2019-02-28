@@ -6,21 +6,21 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:01:09 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/25 12:01:53 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:06:27 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_free_list(t_list *list)
+void	free_list(t_list *args)
 {
 	t_list	*next;
 
-	while (list != NULL)
+	while (args != NULL)
 	{
-		free(list->content);
-		next = list;
-		list = list->next;
+		free(args->content);
+		next = args;
+		args = args->next;
 		free(next);
 	}
 }
