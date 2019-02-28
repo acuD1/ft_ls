@@ -6,16 +6,28 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:22:46 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/28 14:28:56 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:55:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char	get_type(struct stat d_stat)
+char	get_type(struct stat db_stat)
 {
-	if (S_ISDIR(d_stat.st_mode) == 1)
+	if (S_ISREG(db_stat.st_mode))
+		return ('-');
+	else if (S_ISDIR(db_stat.st_mode))
 		return ('.');
+	else if (S_ISCHR(db_stat.st_mode))
+		return ('c');
+	else if (S_ISBLK(db_stat.st_mode))
+		return ('b');
+	else if (S_ISFIFO(db_stat.st_mode))
+		return ('p');
+	else if (S_ISLNK(db_stat.st_mode))
+		return ('l');
+	else if (S_ISSOCK(db_stat.st_mode))
+		return ('s');
 	else
 		return ('?');
 }
