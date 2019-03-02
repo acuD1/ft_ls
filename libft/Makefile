@@ -202,7 +202,6 @@ fclean:
 	@$(FCRUN)
 	@$(RM_RF) $(OBJ)
 	@$(ECHO) $(RMSHW) $(O_PATH)*.o
-	@$(ECHO) $(RMSHW) *.o
 	@$(RM_RF) $(O_PATH)
 	@$(ECHO) $(RMSHW) $(O_PATH)
 	@$(RM_RF) $(B_PATH)

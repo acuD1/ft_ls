@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 12:02:33 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 13:06:00 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-# define VARS_DB (((t_ls*)((t_list*)vars->content))
+# define VARS_DB ((t_ls*)((t_list*)vars->content))
 
 typedef struct	s_mprintf
 {
@@ -79,11 +79,5 @@ char			get_type(struct stat d_stat);
 t_list			*usage(void);
 void			print_opt(t_opt opt);
 void			print_vars_db(t_list *vars);
-
-/*
-**	Tools
-*/
-
-void			free_vars(t_list *args);
 
 #endif

@@ -47,23 +47,27 @@ LNAME = libft.a
 
 # Dir/Files Path
 
-S_PATH = ./srcs/
-H_PATH = ./includes/
-B_PATH = ./build/
-O_PATH = ./build/objs/
-L_PATH = ./libft/
+S_PATH = srcs/
+H_PATH = includes/
+B_PATH = build/
+O_PATH = build/objs/
+L_PATH = libft/
 
+DB_PATH = build/objs/db/
+DP_PATH = build/objs/display/
+CR_PATH = build/objs/core/
+
+OBJP = "$(O_PATH){core,display,db}*.o"
 
 # Files
 
-SRC += $(S_PATH)ft_ls.c
-SRC += $(S_PATH)ft_mprintf.c
-SRC += $(S_PATH)mprintf_tools.c
-SRC += $(S_PATH)input_parser.c
-SRC += $(S_PATH)display.c
-SRC += $(S_PATH)tools.c
-SRC += $(S_PATH)db_tools.c
-SRC += $(S_PATH)get_type.c
+SRC += $(S_PATH)core/ft_ls.c
+SRC += $(S_PATH)core/input_parser.c
+SRC += $(S_PATH)display/ft_mprintf.c
+SRC += $(S_PATH)display/mprintf_tools.c
+SRC += $(S_PATH)display/display.c
+SRC += $(S_PATH)db/db_tools.c
+SRC += $(S_PATH)db/get_type.c
 
 # Objects and Headers
 
@@ -76,8 +80,8 @@ LIB = $(L_PATH)$(LNAME)
 C_GCC = gcc -g
 CMPLC = $(C_GCC) -c -I$(H_PATH)
 CMPLO = $(C_GCC) -o
-BUILD = $(B_PATH) $(O_PATH)
-AR_RC = ar rc
+BUILD = $(B_PATH) $(O_PATH) $(DB_PATH) $(DP_PATH) $(CR_PATH)
+AR_RC = ar rcma
 RANLI = ranlib
 CFLAG = -Wall -Wextra -Werror
 RM_RF = /bin/rm -rf
@@ -114,7 +118,7 @@ all: libm $(BUILD) $(NAME)
 
 $(NAME): $(OBJ)
 	@$(ECHO) $(GCFIL) $(NAME)
-	@$(CMPLO) $(NAME) $(O_PATH)*.o $(LIB)
+	@$(CMPLO) $(NAME) $(OBJ) $(LIB)
 	@$(ECHO) $(GCSUC)
 
 $(OBJ): $(O_PATH)%.o: $(S_PATH)%.c $(HDR)
@@ -130,6 +134,18 @@ $(O_PATH):
 	@$(MKDIR) $(O_PATH)
 	@$(ECHO) $(MKSHW) $(O_PATH)
 
+$(CR_PATH):
+	@$(MKDIR) $(CR_PATH)
+	@$(ECHO) $(MKSHW) $(CR_PATH)
+
+$(DP_PATH):
+	@$(MKDIR) $(DP_PATH)
+	@$(ECHO) $(MKSHW) $(DP_PATH)
+
+$(DB_PATH):
+	@$(MKDIR) $(DB_PATH)
+	@$(ECHO) $(MKSHW) $(DB_PATH)
+
 norme:
 	@$(NORMR)
 	@$(NORME) $(SRC) $(H_PATH)$(HNAME)
@@ -138,14 +154,19 @@ norme:
 clean: libco
 	@$(CLRUN)
 	@$(RM_RF) $(OBJ)
-	@$(ECHO) $(RMSHW) $(O_PATH)*.o
+	@$(ECHO) $(RMSHW) $(OBJP)
 	@$(ECHO) $(CLSUC)
 
 fclean: libc
 	@$(FCRUN)
 	@$(RM_RF) $(OBJ)
-	@$(ECHO) $(RMSHW) $(O_PATH)*.o
-	@$(ECHO) $(RMSHW) *.o
+	@$(ECHO) $(RMSHW) $(OBJP)
+	@$(RM_RF) $(CR_PATH)
+	@$(ECHO) $(RMSHW) $(CR_PATH)
+	@$(RM_RF) $(DP_PATH)
+	@$(ECHO) $(RMSHW) $(DP_PATH)
+	@$(RM_RF) $(DB_PATH)
+	@$(ECHO) $(RMSHW) $(DB_PATH)
 	@$(RM_RF) $(O_PATH)
 	@$(ECHO) $(RMSHW) $(O_PATH)
 	@$(RM_RF) $(B_PATH)

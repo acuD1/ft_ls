@@ -6,12 +6,11 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 12:10:29 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 12:57:30 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
 
 char	*get_perms(struct stat db_stat)
 {
@@ -27,14 +26,19 @@ char	*get_perms(struct stat db_stat)
 	perms[6] = (db_stat.st_mode & S_IXGRP) ? 'x' : '-';
 	perms[7] = (db_stat.st_mode & S_IROTH) ? 'r' : '-';
 	perms[8] = (db_stat.st_mode & S_IWOTH) ? 'w' : '-';
-	perms[9] = (db_stat.st_mode & S_IXOTH) ? 'x' : '-';
+	if ((db_stat.st_mode & S_ISVTX))
+		perms[9] = 't';
+	else if ((db_stat.st_mode & S_IXOTH))
+		perms[9] = 'x';
+	else
+		perms[9] = '-';
 	perms[10] = '\0';
 	return (perms);
 }
 
 t_ls	*fetch_db(t_ls *db, char *av)
 {
-	struct	stat	db_stat;
+	struct stat db_stat;
 
 	lstat(av, &db_stat);
 	db->var = ft_strdup(av);

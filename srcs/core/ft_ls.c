@@ -6,11 +6,27 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 11:58:34 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 13:06:44 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+int		free_vars(t_list *vars)
+{
+	t_list *node;
+
+	while (vars != NULL)
+	{
+		free(VARS_DB->var);
+		free(VARS_DB->perms);
+		free(vars->content);
+		node = vars;
+		vars = vars->next;
+		free(node);
+	}
+	return (0);
+}
 
 int		main(int ac, char **av)
 {
