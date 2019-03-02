@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:22:46 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/28 17:55:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 10:10:56 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	get_type(struct stat db_stat)
 	if (S_ISREG(db_stat.st_mode))
 		return ('-');
 	else if (S_ISDIR(db_stat.st_mode))
-		return ('.');
+		return ('d');
 	else if (S_ISCHR(db_stat.st_mode))
 		return ('c');
 	else if (S_ISBLK(db_stat.st_mode))

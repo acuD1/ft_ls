@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/02/28 17:40:12 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 12:02:33 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct	s_ls
 {
 	char		*var;
 	char		type;
+	char		*perms;
 }				t_ls;
 
 /*
