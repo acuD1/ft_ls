@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 13:06:00 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 14:20:12 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,25 @@ typedef	struct	s_ls
 	char		*perms;
 }				t_ls;
 
+
 /*
-**	mprintf
+**	Core
+*/
+
+t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db);
+int				free_vars(t_list *vars);
+
+/*
+**	Display
 */
 
 void			ft_mprintf(int fd, const char *str, ...);
 int				buff_fill_int(int arg, char *buff, t_mprintf *s_mpf);
 int				buff_fill_char(int arg, char *buff, t_mprintf *s_mpf);
 int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
-
-/*
-**	parser
-*/
-
-t_list			*vars_parser(int ac, char **av, t_opt *opt, t_ls *db);
+void			print_opt(t_opt opt);
+void			print_vars_db(t_list *vars);
+t_list			*usage(void);
 
 /*
 **	db
@@ -71,13 +76,5 @@ t_list			*vars_parser(int ac, char **av, t_opt *opt, t_ls *db);
 t_ls			*fetch_db(t_ls *db, char *av);
 t_ls			*init_db(t_list *vars, t_ls *db);
 char			get_type(struct stat d_stat);
-
-/*
-**	Display
-*/
-
-t_list			*usage(void);
-void			print_opt(t_opt opt);
-void			print_vars_db(t_list *vars);
 
 #endif

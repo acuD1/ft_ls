@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_parser.c                                     :+:      :+:    :+:   */
+/*   get_vars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 11:51:29 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 14:19:37 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int		get_opt(t_opt *opt, char av)
+static int		fill_opt(t_opt *opt, char av)
 {
 	if (!(ft_strchr("-Ralrt", av)))
 		return (0);
@@ -29,7 +29,7 @@ static int		get_opt(t_opt *opt, char av)
 	return (1);
 }
 
-static t_list	*get_vars(int ac, char **av, int i, t_ls *db)
+static t_list	*fill_vars(int ac, char **av, int i, t_ls *db)
 {
 	t_list	*vars;
 
@@ -49,7 +49,7 @@ static t_list	*get_vars(int ac, char **av, int i, t_ls *db)
 	}
 }
 
-t_list			*vars_parser(int ac, char **av, t_opt *opt, t_ls *db)
+t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)
 {
 	int		i;
 	int		j;
@@ -68,11 +68,11 @@ t_list			*vars_parser(int ac, char **av, t_opt *opt, t_ls *db)
 		else if (av[i][0] == '-' && av[i][1])
 		{
 			while (av[i][j])
-				if (!(get_opt(opt, av[i][j++])))
+				if (!(fill_opt(opt, av[i][j++])))
 					return (usage());
 		}
 		else
 			break ;
 	}
-	return (get_vars(ac, av, i, db));
+	return (fill_vars(ac, av, i, db));
 }
