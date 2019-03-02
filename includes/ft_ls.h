@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 17:22:54 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 17:52:36 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <pwd.h>
 # include <grp.h>
+# include <time.h>
 # include <stdio.h>
 
 # define VARS_DB ((t_ls*)((t_list*)vars->content))
@@ -51,6 +52,7 @@ typedef	struct	s_ls
 	char		*uid;
 	char		*gid;
 	int			links;
+	size_t		size;
 	char		type;
 }				t_ls;
 
