@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 14:26:06 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 17:22:54 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <unistd.h>
+# include <pwd.h>
+# include <grp.h>
 # include <stdio.h>
 
 # define VARS_DB ((t_ls*)((t_list*)vars->content))
@@ -45,8 +47,11 @@ typedef	struct	s_opt
 typedef	struct	s_ls
 {
 	char		*var;
-	char		type;
 	char		*perms;
+	char		*uid;
+	char		*gid;
+	int			links;
+	char		type;
 }				t_ls;
 
 
@@ -76,5 +81,6 @@ t_list			*usage(void);
 t_ls			*fetch_db(t_ls *db, char *av);
 char			*get_perms(struct stat db_stat);
 char			get_type(struct stat d_stat);
-
+char			*get_gid(struct stat db_stat);
+char			*get_uid(struct stat db_stat);
 #endif

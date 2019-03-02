@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   get_id.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 14:09:22 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 17:14:09 by arsciand         ###   ########.fr       */
+/*   Created: 2019/03/02 17:22:00 by arsciand          #+#    #+#             */
+/*   Updated: 2019/03/02 17:23:44 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		free_vars(t_list *vars)
+char	*get_gid(struct stat db_stat)
 {
-	t_list *node;
+	struct group	*grg;
+	char			*gid;
 
-	while (vars != NULL)
-	{
-		free(VARS_DB->var);
-		free(VARS_DB->perms);
-		free(VARS_DB->uid);
-		free(VARS_DB->gid);
-		free(vars->content);
-		node = vars;
-		vars = vars->next;
-		free(node);
-	}
-	return (0);
+	grg = getgrgid(db_stat.st_gid);
+	if (grg)
+		gid = ft_strdup(grg->gr_name);
+	else
+		gid = ft_itoa(db_stat.st_gid);
+	return (gid);
+}
+
+char	*get_uid(struct stat db_stat)
+{
+	struct passwd *pwd;
+	char *uid;
+
+	pwd = getpwuid(db_stat.st_uid);
+	if (pwd)
+		uid = ft_strdup(pwd->pw_name);
+	else
+		uid = ft_itoa(db_stat.st_uid);
+	return (uid);
 }

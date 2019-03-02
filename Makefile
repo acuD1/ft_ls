@@ -72,6 +72,7 @@ SRC += $(S_PATH)display/display.c
 SRC += $(S_PATH)db/fetch_db.c
 SRC += $(S_PATH)db/get_type.c
 SRC += $(S_PATH)db/get_perms.c
+SRC += $(S_PATH)db/get_id.c
 
 # Objects and Headers
 
@@ -81,6 +82,7 @@ LIB = $(L_PATH)$(LNAME)
 
 # Variables
 
+#C_GCC = gcc -fsanitize=address
 C_GCC = gcc -g
 CMPLC = $(C_GCC) -c -I$(H_PATH)
 CMPLO = $(C_GCC) -o

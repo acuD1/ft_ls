@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   db_tools.c                                         :+:      :+:    :+:   */
+/*   fetch_db.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 14:24:02 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 17:24:01 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@ t_ls	*fetch_db(t_ls *db, char *av)
 	db->var = ft_strdup(av);
 	db->type = get_type(db_stat);
 	db->perms = get_perms(db_stat);
+	db->links = db_stat.st_nlink;
+	db->uid = get_uid(db_stat);
+	db->gid = get_gid(db_stat);
 	return (db);
 }

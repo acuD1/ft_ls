@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 14:18:24 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/02 16:57:40 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(int ac, char **av)
 	t_ls	*db;
 	t_list	*vars;
 
-	ft_bzero(&opt, sizeof(t_ls));
+	ft_bzero(&opt, sizeof(t_opt));
 	if (!(db = (t_ls*)malloc(sizeof(t_ls))))
 		return (0);
 	if (!(vars = get_vars(ac, av, &opt, db)))
