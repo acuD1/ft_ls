@@ -41,6 +41,8 @@ C_C = \033[0;36m
 # Programms names
 
 NAME = ft_ls
+NAMEG = ft_ls
+NAMEF = ft_ls
 HNAME = ft_ls.h
 LNAME = libft.a
 #TNAME =
@@ -82,14 +84,12 @@ LIB = $(L_PATH)$(LNAME)
 
 # Variables
 
-#C_GCC = gcc -fsanitize=address
-C_GCC = gcc -g
+C_GCC = gcc $(CFLAG)
 CMPLC = $(C_GCC) -c -I$(H_PATH)
 CMPLO = $(C_GCC) -o
 BUILD = $(B_PATH) $(O_PATH) $(DB_PATH) $(DP_PATH) $(CR_PATH)
 AR_RC = ar rcma
 RANLI = ranlib
-CFLAG = -Wall -Wextra -Werror
 RM_RF = /bin/rm -rf
 MKDIR = mkdir -p
 NORME = norminette
@@ -111,11 +111,21 @@ NORMR = echo "$(Y_C)===========>\tNorminette\t RUNNING$(RESET_C)"
 NORMD = "$(G_C)====>\tNorminette\t DONE$(RESET_C)"
 TESTR = echo "$(M_C)===========>\tTESTS\t\t RUNNING$(RESET_C)"
 TESTD = "$(M_C)====>\tTESTS\t\t DONE$(RESET_C)"
+GCC_O = "$(B_C)====>\tCompiled with\t- $(CFLAG)$(RESET_C)"
 
 .PHONY: all norme clean fclean re test
 
-# Rules
+DEBUG =
 
+ifeq ($(DEBUG), g)
+	CFLAG = -g
+else ifeq ($(DEBUG), fsanitize)
+	CFLAG = -fsanitize=address
+else
+	CFLAG = -Wall -Wextra -Werror
+endif
+
+# Rules
 make:
 	$(MSG)
 	@$(MAKE) --no-print-directory all
@@ -125,11 +135,13 @@ all: libm $(BUILD) $(NAME)
 $(NAME): $(OBJ)
 	@$(ECHO) $(GCFIL) $(NAME)
 	@$(CMPLO) $(NAME) $(OBJ) $(LIB)
+	@$(ECHO) $(GCC_O)
 	@$(ECHO) $(GCSUC)
 
 $(OBJ): $(O_PATH)%.o: $(S_PATH)%.c $(HDR)
-	@$(CMPLC) $(CFLAG) $< -o $@
+	@$(CMPLC) $< -o $@
 	@$(ECHO) $(GCFIL) $@
+
 
 $(B_PATH):
 	@$(GCRUN)
@@ -190,14 +202,13 @@ libco:
 libc:
 	@make fclean -C $(L_PATH)
 
-test:
-	@$(TESTR)
-	@git clone -q https://github.com/acuD1/$(TNAME).git $(B_PATH)test
-	@$(ECHO) $(DLSHW) $(TNAME)
-	@echo "$(Y_C)STILL IN BETA : Go to build/test and modify Makefile \
-		manually fear each test_*.c and run make re (IF TEST AVAILABLE)$(RESET_C)"
-	@$(ECHO) $(TESTD)
-
+#test:
+#	@$(TESTR)
+#	@git clone -q https://github.com/acuD1/$(TNAME).git $(B_PATH)test
+#	@$(ECHO) $(DLSHW) $(TNAME)
+#	@echo "$(Y_C)STILL IN BETA : Go to build/test and modify Makefile \
+#		manually fear each test_*.c and run make re (IF TEST AVAILABLE)$(RESET_C)"
+#	@$(ECHO) $(TESTD)
 
 re:
 	@$(MAKE) --no-print-directory fclean all
