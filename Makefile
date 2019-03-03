@@ -41,8 +41,6 @@ C_C = \033[0;36m
 # Programms names
 
 NAME = ft_ls
-NAMEG = ft_ls
-NAMEF = ft_ls
 HNAME = ft_ls.h
 LNAME = libft.a
 #TNAME =
