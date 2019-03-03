@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 17:52:36 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/03 13:34:45 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef	struct	s_ls
 	char		*perms;
 	char		*uid;
 	char		*gid;
+	char		*mtime;
 	int			links;
 	size_t		size;
 	char		type;
@@ -85,4 +86,6 @@ char			*get_perms(struct stat db_stat);
 char			get_type(struct stat d_stat);
 char			*get_gid(struct stat db_stat);
 char			*get_uid(struct stat db_stat);
+char 			*get_time(struct stat db_stat);
+
 #endif

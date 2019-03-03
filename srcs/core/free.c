@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 14:09:22 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 17:14:09 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/03 11:41:03 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		free_vars(t_list *vars)
 		free(VARS_DB->perms);
 		free(VARS_DB->uid);
 		free(VARS_DB->gid);
+		free(VARS_DB->mtime);
 		free(vars->content);
 		node = vars;
 		vars = vars->next;

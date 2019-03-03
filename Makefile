@@ -73,6 +73,7 @@ SRC += $(S_PATH)db/fetch_db.c
 SRC += $(S_PATH)db/get_type.c
 SRC += $(S_PATH)db/get_perms.c
 SRC += $(S_PATH)db/get_id.c
+SRC += $(S_PATH)db/get_time.c
 
 # Objects and Headers
 
