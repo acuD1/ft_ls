@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/03 13:34:45 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/05 16:16:55 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct	s_mprintf
 	int			space;
 }				t_mprintf;
 
+typedef struct	s_pad
+{
+	int			m_s_p;
+	int			m_uid_p;
+	int			m_gid_p;
+}				t_pad;
+
 typedef	struct	s_opt
 {
 	int			big_r;
@@ -54,9 +61,11 @@ typedef	struct	s_ls
 	char		*mtime;
 	int			links;
 	size_t		size;
+	int			size_p;
+	int			uid_p;
+	int			gid_p;
 	char		type;
 }				t_ls;
-
 
 /*
 **	Core
@@ -86,6 +95,15 @@ char			*get_perms(struct stat db_stat);
 char			get_type(struct stat d_stat);
 char			*get_gid(struct stat db_stat);
 char			*get_uid(struct stat db_stat);
-char 			*get_time(struct stat db_stat);
+char			*get_time(struct stat db_stat);
+void			get_pad(t_list *vars, t_pad *pad);
+int				get_guid_pad(char *guid);
+size_t			get_size_pad(size_t size);
+
+/*
+** dev
+*/
+
+void			print_content(t_list *vars, t_opt *opt, t_pad *pad);
 
 #endif

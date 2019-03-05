@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 17:22:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/02 17:23:44 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/05 16:14:40 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*get_gid(struct stat db_stat)
 
 char	*get_uid(struct stat db_stat)
 {
-	struct passwd *pwd;
-	char *uid;
+	struct passwd	*pwd;
+	char			*uid;
 
 	pwd = getpwuid(db_stat.st_uid);
 	if (pwd)

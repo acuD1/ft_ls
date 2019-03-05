@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/03 13:36:21 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/05 16:12:18 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ t_ls	*fetch_db(t_ls *db, char *av)
 	db->perms = get_perms(db_stat);
 	db->links = db_stat.st_nlink;
 	db->uid = get_uid(db_stat);
+	db->uid_p = get_guid_pad(db->uid);
 	db->gid = get_gid(db_stat);
+	db->gid_p = get_guid_pad(db->gid);
 	db->size = db_stat.st_size;
+	db->size_p = get_size_pad(db->size);
 	db->mtime = get_time(db_stat);
 	return (db);
 }

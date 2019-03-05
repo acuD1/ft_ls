@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/03 12:48:37 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/05 16:14:15 by arsciand         ###   ########.fr       */
+/*   Created: 2019/03/05 14:38:35 by arsciand          #+#    #+#             */
+/*   Updated: 2019/03/05 14:41:50 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
+#include <stdlib.h>
 
-char	*get_time(struct stat db_stat)
+char	*ft_strjoin_free(char *s1, char *s2, int vars)
 {
-	long	mtime;
+	char *str;
 
-	mtime = db_stat.st_mtime;
-	if (mtime > time(NULL) || time(NULL) - mtime >= 15780000)
-		return (ft_strjoin_free(ft_strjoin_free(ft_strsub(ctime(&(mtime)), 4, 6)
-				, "  ", 1), ft_strsub(ctime(&(mtime)), 20, 4), 3));
+	str = ft_strjoin(s1, s2);
+	if (vars == 0)
+		return (str);
+	else if (vars == 1)
+		free(s1);
+	else if (vars == 2)
+		free(s2);
 	else
-		return (ft_strsub(ctime(&(mtime)), 4, 12));
+	{
+		free(s1);
+		free(s2);
+	}
+	return (str);
 }
