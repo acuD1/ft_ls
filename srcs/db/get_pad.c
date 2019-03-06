@@ -6,13 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/05 16:16:39 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/06 17:57:12 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		get_guid_pad(char *guid)
+int		get_smmguid_pad(char *guid)
 {
 	int	guid_p;
 
@@ -22,34 +22,41 @@ int		get_guid_pad(char *guid)
 	return (guid_p);
 }
 
-size_t	get_size_pad(size_t size)
+char	*get_minor_pad(char *min)
 {
-	int	tmp_s;
+	size_t length;
+	size_t i;
+	static char tmp[4];
 
-	tmp_s = 0;
-	if (size == 0)
-		return (1);
-	while (size != 0)
+	length = ft_strlen(min);
+	i = 0;
+	ft_memset(tmp, ' ', 4);
+	while(length)
 	{
-		size /= 10;
-		tmp_s++;
+		tmp[i] = min[length - 1];
+		i++;
+		length--;
 	}
-	return (tmp_s);
+	free(min);
+	return (ft_strrev(tmp));
 }
 
 void	get_pad(t_list *vars, t_pad *pad)
 {
-	int tmp_s_p;
+	int tmp_size_mm_p;
 	int	tmp_uid_p;
 	int	tmp_gid_p;
 
 	while (vars)
 	{
-		tmp_s_p = get_size_pad(VARS_DB->size);
-		tmp_uid_p = get_guid_pad(VARS_DB->uid);
-		tmp_gid_p = get_guid_pad(VARS_DB->gid);
-		if (tmp_s_p > pad->m_s_p)
-			pad->m_s_p = tmp_s_p;
+		tmp_size_mm_p = get_smmguid_pad(VARS_DB->size_mm);
+		if ((VARS_DB->type == 'c' && tmp_size_mm_p < 8) ||
+			(VARS_DB->type == 'b' && tmp_size_mm_p < 8))
+			tmp_size_mm_p = 8;
+		tmp_uid_p = get_smmguid_pad(VARS_DB->uid);
+		tmp_gid_p = get_smmguid_pad(VARS_DB->gid);
+		if (tmp_size_mm_p > pad->m_size_mm_p)
+			pad->m_size_mm_p = tmp_size_mm_p;
 		if (tmp_uid_p > pad->m_uid_p)
 			pad->m_uid_p = tmp_uid_p;
 		if (tmp_gid_p > pad->m_gid_p)

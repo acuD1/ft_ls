@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/05 16:16:55 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/06 18:08:54 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_mprintf
 
 typedef struct	s_pad
 {
-	int			m_s_p;
+	int			m_size_mm_p;
 	int			m_uid_p;
 	int			m_gid_p;
 }				t_pad;
@@ -59,11 +59,12 @@ typedef	struct	s_ls
 	char		*uid;
 	char		*gid;
 	char		*mtime;
+	char		*size_mm;
 	int			links;
-	size_t		size;
-	int			size_p;
+	int			size;
 	int			uid_p;
 	int			gid_p;
+	int			size_mm_p;
 	char		type;
 }				t_ls;
 
@@ -97,8 +98,9 @@ char			*get_gid(struct stat db_stat);
 char			*get_uid(struct stat db_stat);
 char			*get_time(struct stat db_stat);
 void			get_pad(t_list *vars, t_pad *pad);
-int				get_guid_pad(char *guid);
-size_t			get_size_pad(size_t size);
+int				get_smmguid_pad(char *guid);
+char			*get_minor_pad(char *min);
+char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 
 /*
 ** dev
