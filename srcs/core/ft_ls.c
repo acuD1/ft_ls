@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/06 15:40:45 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/07 10:06:43 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int		main(int ac, char **av)
 		return (0);
 	if (!(vars = get_vars(ac, av, &opt, db)))
 		return (0);
-	//print_vars_db(vars);
-	//print_opt(opt);
+	print_vars_db(vars);
+	print_opt(opt);
 	get_pad(vars, &pad);
 	print_content(vars, &opt, &pad);
 	free_vars(vars);
