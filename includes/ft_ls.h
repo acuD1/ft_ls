@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/07 13:04:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/07 17:21:27 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <stdio.h>
 
 # define VARS_DB ((t_ls*)((t_list*)vars->content))
-# define VARS_SORT_DB ((t_ls*)((t_list*)vars_sorted->content))
+# define VARS_DB_S ((t_ls*)((t_list*)sort->content))
 
 typedef struct	s_mprintf
 {
@@ -66,7 +66,9 @@ typedef	struct	s_ls
 	int			uid_p;
 	int			gid_p;
 	int			size_mm_p;
+	int			time_digit;
 	char		type;
+	struct stat db_stat;
 }				t_ls;
 
 /*
@@ -110,6 +112,8 @@ char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 
 
 t_list	*type_sort(t_list *vars);
-t_list	*sort_vars(t_list *vars, t_opt *opt);
+void 	lst_sort(t_list **alist);
+void	lst_rev(t_list **alist);
+t_list	*test(t_list *alist, t_opt *opt);
 
 #endif
