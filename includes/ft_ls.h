@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/06 18:08:54 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/07 13:04:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 
 # define VARS_DB ((t_ls*)((t_list*)vars->content))
+# define VARS_SORT_DB ((t_ls*)((t_list*)vars_sorted->content))
 
 typedef struct	s_mprintf
 {
@@ -86,6 +87,7 @@ int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
 void			print_opt(t_opt opt);
 void			print_vars_db(t_list *vars);
 t_list			*usage(void);
+void			print_content(t_list *vars, t_opt *opt, t_pad *pad);
 
 /*
 **	db
@@ -106,6 +108,8 @@ char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 ** dev
 */
 
-void			print_content(t_list *vars, t_opt *opt, t_pad *pad);
+
+t_list	*type_sort(t_list *vars);
+t_list	*sort_vars(t_list *vars, t_opt *opt);
 
 #endif
