@@ -73,6 +73,7 @@ SRC += $(S_PATH)ft_lstmap.c
 SRC += $(S_PATH)ft_lstmerge.c
 SRC += $(S_PATH)ft_lstnew.c
 SRC += $(S_PATH)ft_lstpushback.c
+SRC += $(S_PATH)ft_lstrev.c
 SRC += $(S_PATH)ft_memalloc.c
 SRC += $(S_PATH)ft_memccpy.c
 SRC += $(S_PATH)ft_memchr.c

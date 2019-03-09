@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/07 17:23:01 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:48:45 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int		main(int ac, char **av)
 		return (0);
 	if (!(vars = get_vars(ac, av, &opt, db)))
 		return (0);
-//	print_vars_db(vars);
-//	print_opt(opt);
+	print_vars_db(vars);
+	print_opt(opt);
 	get_pad(vars, &pad);
-	printf("default\n");
+	printf("\nDefault INPUT\n\n");
 	print_content(vars, &opt, &pad);
-	vars = test(vars, &opt);
-	printf("-t\n");
+	sort_files(&vars, &opt);
+	printf("\n[%s] OUTPUT\n\n", av[1]);
 	print_content(vars, &opt, &pad);
 	free_vars(vars);
 	free(db);

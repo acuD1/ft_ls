@@ -64,6 +64,7 @@ OBJP = "$(O_PATH){core,display,db}*.o"
 SRC += $(S_PATH)core/ft_ls.c
 SRC += $(S_PATH)core/get_vars.c
 SRC += $(S_PATH)core/free.c
+SRC += $(S_PATH)core/sort.c
 
 SRC += $(S_PATH)display/ft_mprintf.c
 SRC += $(S_PATH)display/mprintf_tools.c

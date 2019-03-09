@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 11:08:12 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/05 14:41:43 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:42:15 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 t_list				*ft_lstfind(t_list *lst, void *content_ref, int (*cmp)());
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 int					ft_lstlen(t_list *lst);
+void				ft_lstrev(t_list **alst);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstmerge(t_list **alst1, t_list *alst2);
 t_list				*ft_lstnew(void const *content, size_t content_size);

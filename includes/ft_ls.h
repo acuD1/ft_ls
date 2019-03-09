@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/07 17:21:27 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:43:59 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 # include <time.h>
 # include <stdio.h>
 
-# define VARS_DB ((t_ls*)((t_list*)vars->content))
-# define VARS_DB_S ((t_ls*)((t_list*)sort->content))
+# define VARS_DB ((t_ls*)(vars->content))
+# define HALF_A ((t_ls*)(a->content))
+# define HALF_B ((t_ls*)(b->content))
 
 typedef struct	s_mprintf
 {
@@ -110,10 +111,6 @@ char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 ** dev
 */
 
-
-t_list	*type_sort(t_list *vars);
-void 	lst_sort(t_list **alist);
-void	lst_rev(t_list **alist);
-t_list	*test(t_list *alist, t_opt *opt);
+void	sort_files(t_list **headref, t_opt *opt);
 
 #endif

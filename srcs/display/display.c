@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/07 17:02:19 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/09 11:51:38 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	print_content(t_list *vars, t_opt *opt, t_pad *pad)
 	while (vars != NULL)
 	{
 		if (opt->l)
-			ft_mprintf(1, "%s  %d %-*.*s  %-*.*s  %*.*s %s %s\n",
+			printf("%s  %d %-*.*s  %-*.*s  %*.*s %s %s\n",
 					VARS_DB->perms, VARS_DB->links,
 					pad->m_uid_p, VARS_DB->uid_p, VARS_DB->uid,
 					pad->m_gid_p, VARS_DB->gid_p, VARS_DB->gid,

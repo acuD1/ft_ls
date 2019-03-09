@@ -9,3 +9,8 @@ mini-printf :
 				=> Concat buffer, then get_args
 					=> format buffer from args
 						=> print
+
+Working :
+
+./ft_ls -l Makefile README.md build ft_ls ft_ls.dSYM
+
