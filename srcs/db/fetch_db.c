@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/07 17:18:20 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/10 13:28:26 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_ls	*fetch_db(t_ls *db, char *av)
 {
 	struct stat db_stat;
+
 	lstat(av, &db_stat);
 	db->var = ft_strdup(av);
 	db->type = get_type(db_stat);

@@ -6,88 +6,91 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:44:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/09 14:45:42 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/10 13:33:20 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	lst_split(t_list *vars, t_list **start, t_list **end)
+static void		split_lst(t_list *vars, t_list **split_a, t_list **split_b)
 {
-	t_list *slow;
-	t_list *fast;
+	t_list *current;
+	t_list *next_current;
 
-	slow = vars;
-	fast = vars->next;
+	current = vars;
+	next_current = vars->next;
 	if (!(vars) || !(vars->next))
 	{
-		*start = vars;
-		*end = NULL;
-		return;
+		*split_a = vars;
+		*split_b = NULL;
+		return ;
 	}
-	while (fast)
+	while (next_current)
 	{
-		fast = fast->next;
-		if (fast)
+		next_current = next_current->next;
+		if (next_current)
 		{
-			slow = slow->next;
-			fast = fast->next;
+			current = current->next;
+			next_current = next_current->next;
 		}
 	}
-	*start = vars;
-	*end = slow->next;
-	slow->next = NULL;
+	*split_a = vars;
+	*split_b = current->next;
+	current->next = NULL;
 }
 
-t_list	*lst_merge_sort(t_list *a, t_list *b, int (*to_cmp)(t_list *, t_list *, int), int i)
+static t_list	*merge_lst(t_list *split_a, t_list *split_b
+					, int (*to_cmp)(t_list *, t_list *, int), int i)
 {
 	t_list *vars;
 
 	vars = NULL;
-	if (!(a))
-		return (b);
-	else if (!(b))
-		return (a);
-	if ((*to_cmp)(a, b, i) <= 0)
+	if (!(split_a))
+		return (split_b);
+	else if (!(split_b))
+		return (split_a);
+	if ((*to_cmp)(split_a, split_b, i) <= 0)
 	{
-		vars = a;
-		vars->next = lst_merge_sort(a->next, b, to_cmp, i);
+		vars = split_a;
+		vars->next = merge_lst(split_a->next, split_b, to_cmp, i);
+
 	}
 	else
 	{
-		vars = b;
-		vars->next = lst_merge_sort(a, b->next, to_cmp, i);
+		vars = split_b;
+		vars->next = merge_lst(split_a, split_b->next, to_cmp, i);
 	}
 	return (vars);
 }
 
-void 	lst_sort(t_list **vars, int (*to_cmp)(t_list *, t_list *, int), int i)
+static void		merge_sort(t_list **vars, int (*to_cmp)(t_list *, t_list *, int)
+					, int i)
 {
-	t_list *a;
-	t_list *b;
-	t_list *hvars;
+	t_list *split_a;
+	t_list *split_b;
+	t_list *refvars;
 
-	hvars = *vars;
-	if (!(hvars) || !(hvars->next))
+	refvars = *vars;
+	if (!(refvars) || !(refvars->next))
 		return ;
-	lst_split(hvars, &a, &b);
-	lst_sort(&a, to_cmp, i);
-	lst_sort(&b, to_cmp, i);
-	*vars = lst_merge_sort(a, b, to_cmp, i);
+	split_lst(refvars, &split_a, &split_b);
+	merge_sort(&split_a, to_cmp, i);
+	merge_sort(&split_b, to_cmp, i);
+	*vars = merge_lst(split_a, split_b, to_cmp, i);
 }
 
-int		to_cmp(t_list *a, t_list *b, int i)
+static	int		to_cmp(t_list *split_a, t_list *split_b, int i)
 {
 	if (i == 1)
 		return (HALF_B->time_digit - HALF_A->time_digit);
 	return (ft_strcmp(HALF_A->var, HALF_B->var));
 }
 
-void	sort_files(t_list **vars, t_opt *opt)
+void			sort_files(t_list **vars, t_opt *opt)
 {
-	lst_sort(vars , to_cmp, 0);
+	merge_sort(vars, to_cmp, 0);
 	if (opt->t == 1)
-		lst_sort(vars, to_cmp, 1);
+		merge_sort(vars, to_cmp, 1);
 	if (opt->r == 1)
 		ft_lstrev(vars);
 }

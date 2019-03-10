@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/07 17:01:54 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/10 13:23:11 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int		get_smmguid_pad(char *guid)
 
 char	*get_minor_pad(char *min)
 {
-	size_t length;
-	size_t i;
-	static char tmp[4];
+	size_t		length;
+	size_t		i;
+	static char	tmp[4];
 
 	length = ft_strlen(min);
 	i = 0;
 	ft_memset(tmp, ' ', 4);
-	while(length)
+	while (length)
 	{
 		tmp[i] = min[length - 1];
 		i++;
