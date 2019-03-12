@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/09 11:51:38 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:19:33 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_list	*usage(void)
 	return (NULL);
 }
 
-void	print_content(t_list *vars, t_opt *opt, t_pad *pad)
+void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 {
 	while (vars != NULL)
 	{
@@ -78,4 +78,6 @@ void	print_content(t_list *vars, t_opt *opt, t_pad *pad)
 		}
 		vars = vars->next;
 	}
+	if (n_dirs > 0)
+		ft_mprintf(1, "\n");
 }

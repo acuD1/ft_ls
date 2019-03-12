@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/10 13:21:12 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:18:53 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 # include <stdio.h>
 
 # define VARS_DB ((t_ls*)(vars->content))
-# define HALF_A ((t_ls*)(split_a->content))
-# define HALF_B ((t_ls*)(split_b->content))
+# define HALF_A ((t_ls*)(half_a->content))
+# define HALF_B ((t_ls*)(half_b->content))
+# define TMP_DB ((t_ls*)(tmp->content))
+# define DIRS_DB ((t_ls*)(dirs->content))
 
 typedef struct	s_mprintf
 {
@@ -77,6 +79,7 @@ typedef	struct	s_ls
 */
 
 t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db);
+void			sort_vars(t_list **vars, t_opt *opt);
 int				free_vars(t_list *vars);
 
 /*
@@ -90,7 +93,7 @@ int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
 void			print_opt(t_opt opt);
 void			print_vars_db(t_list *vars);
 t_list			*usage(void);
-void			print_content(t_list *vars, t_opt *opt, t_pad *pad);
+void			print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs);
 
 /*
 **	db
@@ -111,6 +114,7 @@ char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 ** dev
 */
 
-void			sort_files(t_list **vars, t_opt *opt);
+void	process_vars(t_list **vars, t_opt *opt, t_pad *pad);
+
 
 #endif
