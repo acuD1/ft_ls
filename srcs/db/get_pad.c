@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/13 11:07:10 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 10:38:34 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*get_minor_pad(char *min)
 	return (ft_strrev(tmp));
 }
 
-int		get_int_pad(int	i)
+int		get_int_pad(int i)
 {
 	int pad;
 

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 10:33:08 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 10:39:22 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef	struct	s_ls
 	int			link_p;
 	int			time_digit;
 	char		type;
-	struct stat db_stat;
 }				t_ls;
 
 /*
@@ -101,7 +100,8 @@ int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
 void			print_opt(t_opt opt);
 void			print_vars_db(t_list *vars);
 t_list			*usage(void);
-void			print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs);
+void			print_files(t_list *vars, t_opt *opt,
+					t_pad *pad, size_t n_dirs);
 
 /*
 **	db
@@ -128,6 +128,6 @@ int				get_int_pad(int	i);
 ** dev2
 */
 
-void	print_test(t_list *tmp);
+void			print_test(t_list *tmp);
 
 #endif

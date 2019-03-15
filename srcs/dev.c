@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 10:16:49 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 10:38:08 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ t_list	*fetch_dir_content(t_list *dirs, DIR *content, t_opt *opt)
 	free(dir_path);
 	free(db);
 	return (dir_content);
-
 }
 
-t_list *get_dir_content(t_list *dirs, t_opt *opt)
+t_list	*get_dir_content(t_list *dirs, t_opt *opt)
 {
 	DIR		*content;
 	t_list	*dir_content;
-	(void)opt;
 
+	(void)opt;
 	content = opendir(DIRS_DB->var);
 	dir_content = fetch_dir_content(dirs, content, opt);
 	closedir(content);
@@ -50,8 +49,8 @@ t_list *get_dir_content(t_list *dirs, t_opt *opt)
 
 void	dirs_normal(t_list *dirs, t_opt *opt, size_t n_dirs)
 {
-	t_list *dir_content;
-	t_pad pad;
+	t_list	*dir_content;
+	t_pad	pad;
 
 	ft_bzero(&pad, sizeof(t_pad));
 	if (n_dirs)
