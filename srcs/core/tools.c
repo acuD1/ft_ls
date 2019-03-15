@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 10:16:58 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 10:17:14 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 12:19:37 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,17 @@ char		*get_dir_path(char *dir_path, char *dir, char *name)
 	ft_strcat(dir_path, "/");
 	ft_strcat(dir_path, name);
 	return (dir_path);
+}
+
+int		get_blocks(t_list *vars)
+{
+	int blocks;
+
+	blocks = 0;
+	while (vars)
+	{
+		blocks += VARS_DB->block;
+		vars = vars->next;
+	}
+	return (blocks);
 }

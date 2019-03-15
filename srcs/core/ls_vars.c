@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 10:11:18 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 10:12:16 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 12:08:54 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	process_dirs(t_list *dirs, t_opt *opt, size_t n_dirs)
 	{
 		dirs_normal(dirs, opt, n_dirs);
 		dirs = dirs->next;
+		n_dirs--;
 	}
 }
 
@@ -40,7 +41,7 @@ void	ls_vars(t_list **vars, t_opt *opt, t_pad *pad)
 /*
 **	-
 */
-	print_files(files, opt, pad, n_dirs);
+	print_files(files, opt, pad, 0);
 	process_dirs(dirs, opt, n_dirs);
 	free_lst(files);
 	free_lst(dirs);

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/13 11:09:04 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 11:13:15 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_ls	*fetch_db(t_ls *db, char *av, char *name)
 	db->size_mm_p = get_smmguid_pad(db->size_mm);
 	db->mtime = get_time(db_stat);
 	db->time_digit = db_stat.st_mtime;
+	db->block = db_stat.st_blocks;
 	return (db);
 }

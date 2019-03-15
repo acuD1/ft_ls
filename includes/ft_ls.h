@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 10:39:22 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 12:19:53 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,14 @@ typedef	struct	s_ls
 	char		*mtime;
 	char		*size_mm;
 	int			links;
+	int			block;
 	int			size;
 	int			uid_p;
 	int			gid_p;
 	int			size_mm_p;
 	int			link_p;
 	int			time_digit;
+	int			n_dirs;
 	char		type;
 }				t_ls;
 
@@ -89,6 +91,8 @@ int				free_vars(t_list *vars);
 int				free_lst(t_list *lst);
 char			*get_dir_path(char *dir_path, char *dir, char *name);
 void			dirs_normal(t_list *dirs, t_opt *opt, size_t n_dirs);
+int				get_blocks(t_list *vars);
+
 /*
 **	Display
 */

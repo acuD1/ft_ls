@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/13 11:24:24 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 12:20:02 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_list	*usage(void)
 
 void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 {
+	if (n_dirs > 0 && opt->l)
+		printf("total %d\n", get_blocks(vars));
 	while (vars != NULL)
 	{
 		if (opt->l)
@@ -70,8 +72,7 @@ void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 					VARS_DB->mtime, VARS_DB->var);
 		else
 		{
-			if (VARS_DB->type == '-')
-				ft_mprintf(1, "%s", VARS_DB->var);
+			ft_mprintf(1, "%s", VARS_DB->var);
 			if (vars->next != NULL)
 				ft_mprintf(1, " ");
 			if (vars->next == NULL)
@@ -79,6 +80,4 @@ void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 		}
 		vars = vars->next;
 	}
-	if (n_dirs > 0)
-		ft_mprintf(1, "\n");
 }

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 10:38:08 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 12:10:06 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_list	*fetch_dir_content(t_list *dirs, DIR *content, t_opt *opt)
 	while ((dir = readdir(content)))
 	{
 		dir_path = get_dir_path(dir_path, DIRS_DB->var, dir->d_name);
+		if (!(opt->a) && dir->d_name[0] == '.')
+			continue;
 		ft_lstpushback(&dir_content,
 			ft_lstnew(fetch_db(db, dir_path, dir->d_name), sizeof(t_ls)));
 		continue;
@@ -54,7 +56,7 @@ void	dirs_normal(t_list *dirs, t_opt *opt, size_t n_dirs)
 
 	ft_bzero(&pad, sizeof(t_pad));
 	if (n_dirs)
-		ft_mprintf(1, "%s:\n", DIRS_DB->var);
+		ft_mprintf(1, "\n%s:\n", DIRS_DB->var);
 	dir_content = get_dir_content(dirs, opt);
 	sort_vars(&dir_content, opt);
 	get_pad(dir_content, &pad);
