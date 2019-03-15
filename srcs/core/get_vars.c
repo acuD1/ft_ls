@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/07 11:02:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/13 10:53:52 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,17 @@ static t_list	*fill_vars(int ac, char **av, int i, t_ls *db)
 	if (!(av[i]))
 	{
 		ft_lstpushback(&vars,
-			ft_lstnew(fetch_db(db, "."), sizeof(t_ls)));
+			ft_lstnew(fetch_db(db, ".", "."), sizeof(t_ls)));
 		return (vars);
 	}
 	else
 	{
 		while (i < ac)
+		{
 			ft_lstpushback(&vars,
-				ft_lstnew(fetch_db(db, av[i++]), sizeof(t_ls)));
+				ft_lstnew(fetch_db(db, av[i], av[i]), sizeof(t_ls)));
+			i++;
+		}
 		return (vars);
 	}
 }

@@ -6,21 +6,22 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/10 13:28:26 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/13 11:09:04 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_ls	*fetch_db(t_ls *db, char *av)
+t_ls	*fetch_db(t_ls *db, char *av, char *name)
 {
 	struct stat db_stat;
 
 	lstat(av, &db_stat);
-	db->var = ft_strdup(av);
+	db->var = ft_strdup(name);
 	db->type = get_type(db_stat);
 	db->perms = get_perms(db_stat);
 	db->links = db_stat.st_nlink;
+	db->link_p = get_int_pad(db->links);
 	db->uid = get_uid(db_stat);
 	db->uid_p = get_smmguid_pad(db->uid);
 	db->gid = get_gid(db_stat);

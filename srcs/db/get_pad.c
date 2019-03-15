@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/10 13:23:11 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/13 11:07:10 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,25 @@ char	*get_minor_pad(char *min)
 	return (ft_strrev(tmp));
 }
 
+int		get_int_pad(int	i)
+{
+	int pad;
+
+	pad = 0;
+	while (i > 0)
+	{
+		i /= 10;
+		pad++;
+	}
+	return (pad);
+}
+
 void	get_pad(t_list *vars, t_pad *pad)
 {
 	int tmp_size_mm_p;
 	int	tmp_uid_p;
 	int	tmp_gid_p;
+	int	tmp_link_p;
 
 	while (vars)
 	{
@@ -55,12 +69,15 @@ void	get_pad(t_list *vars, t_pad *pad)
 			tmp_size_mm_p = 8;
 		tmp_uid_p = get_smmguid_pad(VARS_DB->uid);
 		tmp_gid_p = get_smmguid_pad(VARS_DB->gid);
+		tmp_link_p = get_int_pad(VARS_DB->links);
 		if (tmp_size_mm_p > pad->m_size_mm_p)
 			pad->m_size_mm_p = tmp_size_mm_p;
 		if (tmp_uid_p > pad->m_uid_p)
 			pad->m_uid_p = tmp_uid_p;
 		if (tmp_gid_p > pad->m_gid_p)
 			pad->m_gid_p = tmp_gid_p;
+		if (tmp_link_p > pad->m_link_p)
+			pad->m_link_p = tmp_link_p;
 		vars = vars->next;
 	}
 }

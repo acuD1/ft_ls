@@ -6,98 +6,94 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/12 17:14:58 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 09:13:51 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		free_lst(t_list *lst)
+char		*build_new_path(char *old_path, char *directory, char *name)
 {
-	t_list *node;
+	int	i;
 
-	while (lst != NULL)
+	if (directory == NULL || ft_strequ(directory, ""))
 	{
-		free(lst->content);
-		node = lst;
-		lst = lst->next;
-		free(node);
+		i = ft_strlen(old_path);
+		while (old_path[i] != '/')
+			old_path[i--] = '\0';
+		old_path = ft_strcat(old_path, name);
 	}
-	return (0);
+	else
+	{
+		ft_bzero(old_path, MAX);
+		(void)ft_strcpy(old_path, directory);
+		(void)ft_strcat(old_path, "/");
+		(void)ft_strcat(old_path, name);
+	}
+	return (old_path);
 }
 
-t_list	*fill_vars_dirs(t_list *vars)
+t_list *fill_dirs_content(t_list *dirs, DIR *content, t_opt *opt)
 {
-	t_list	*dirs;
+	t_list *dirs_content;
+	char	*new_path;
+	struct dirent *dir;
+	t_ls	*db;
 
-	dirs = NULL;
-	while (vars != NULL)
+	(void)opt;
+	if (!(db = (t_ls*)malloc(sizeof(t_ls))))
+		return (0);
+	new_path = ft_strnew(MAX);
+	while ((dir = readdir(content)))
 	{
-		if (((t_ls*)vars->content)->type == 'd')
-			ft_lstpushback(&dirs, ft_lstnew((t_ls*)vars->content, sizeof(t_ls)));
-		vars = vars->next;
+		//printf("dirent : |%s|\n", dir->d_name);
+		new_path = build_new_path(new_path, ((t_ls*)dirs->content)->var, dir->d_name);
+		//printf("new path : |%s|\n", new_path);
+		ft_lstpushback(&dirs_content, ft_lstnew(fetch_db(db, new_path, dir->d_name), sizeof(t_ls)));
+		continue;
 	}
-	return (dirs);
+	free(new_path);
+	free(db);
+	return (dirs_content);
+
 }
 
-t_list	*fill_vars_files(t_list *vars)
-{
-	t_list	*files;
-
-	files = NULL;
-	while (vars != NULL)
-	{
-		if (((t_ls*)vars->content)->type == '-')
-			ft_lstpushback(&files, ft_lstnew((t_ls*)vars->content, sizeof(t_ls)));
-		vars = vars->next;
-	}
-	return (files);
-}
-
-void	print_test(t_list *tmp)
-{
-	printf("\nDEBUG PROCESS_VARS\n\n");
-	while (tmp)
-	{
-		if (((t_ls*)tmp->content)->type == 'd')
-			printf("dirs = %s\n", ((t_ls*)tmp->content)->var);
-		if (((t_ls*)tmp->content)->type == '-')
-			printf("files = %s\n", ((t_ls*)tmp->content)->var);
-		tmp = tmp->next;
-	}
-}
-
-/*
 t_list *get_dirs_content(t_list *dirs, t_opt *opt)
 {
 	DIR		*content;
-	t_list	*files;
+	t_list	*dirs_content;
 
-	files = NULL;
 	content = opendir(((t_ls*)dirs->content)->var);
-
-
-
-}*/
-
-void	print_dirs(t_list *dirs, t_opt *opt, t_pad *pad, size_t n_dirs)
-{
-	t_list *dirs_content;
-
-	(void)dirs_content;
-	(void)opt;
-	(void)pad;
-	if (n_dirs)
-		ft_mprintf(1, "%s:\n", ((t_ls*)dirs->content)->var);
-//	dirs_content = get_dirs_content(dirs, opt);
-//	printf_files(dirs_content, opt, pad, n_dirs);
+	dirs_content = fill_dirs_content(dirs, content, opt);
+	return (dirs_content);
 }
 
-void	process_dirs(t_list *dirs, t_opt *opt, t_pad *pad, size_t n_dirs)
+void	dirs_normal(t_list *dirs, t_opt *opt, t_pad *pad, size_t n_dirs)
 {
+	(void)pad;
+	t_list *dirs_content;
+
+	(void)opt;
+	if (n_dirs)
+		ft_mprintf(1, "%s:\n", ((t_ls*)dirs->content)->var);
+	dirs_content = get_dirs_content(dirs, opt);
+//	sort_vars(&dirs_content, opt);
+//	get_pad(dirs_content, pad);
+//	print_files(dirs_content, opt, pad, n_dirs);
+	free_vars(dirs_content);
+}
+
+void	process_dirs(t_list *dirs, t_opt *opt, size_t n_dirs)
+{
+	(void)opt;
+	(void)n_dirs;
+	(void)dirs;
+	t_pad pad;
+
+	ft_bzero(&pad, sizeof(t_pad));
 	while (dirs != NULL)
 	{
-		print_dirs(dirs, opt, pad, n_dirs);
+		dirs_normal(dirs, opt, &pad, n_dirs);
 		dirs = dirs->next;
 	}
 }
@@ -105,24 +101,26 @@ void	process_dirs(t_list *dirs, t_opt *opt, t_pad *pad, size_t n_dirs)
 void	process_vars(t_list **vars, t_opt *opt, t_pad *pad)
 {
 	t_list	*dirs;
-	t_list	*files;
+//	t_list	*files;
 	size_t	n_dirs;
+	(void)pad;
+	(void)opt;
 
 	dirs = fill_vars_dirs(*vars);
-	files = fill_vars_files(*vars);
+//	files = fill_vars_files(*vars);
 	n_dirs = ft_lstlen(dirs);
 /*
 **	DEBUG
-*/
+*//*
 	print_test(dirs);
 	print_test(files);
-	printf("\nn_dirs = |%zu|\n", n_dirs);
+	printf("\nn_dirs = |%zu|\n", n_dirs);*/
 /*
 **	-
 */
-	printf("\nFINAL OUTPUT\n-\n");
-	print_files(files, opt, pad, n_dirs);
-	process_dirs(dirs, opt, pad, n_dirs);
+//	printf("\nFINAL OUTPUT\n-\n");
+//	print_files(files, opt, pad, n_dirs);
+	process_dirs(dirs, opt, n_dirs);
+//	free_lst(files);
 	free_lst(dirs);
-	free_lst(files);
 }

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/12 16:19:33 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/13 11:24:24 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 	while (vars != NULL)
 	{
 		if (opt->l)
-			printf("%s  %d %-*.*s  %-*.*s  %*.*s %s %s\n",
-					VARS_DB->perms, VARS_DB->links,
+			printf("%s  %*.*d %-*.*s  %-*.*s  %*.*s %s %s\n",
+					VARS_DB->perms,
+					pad->m_link_p, VARS_DB->link_p, VARS_DB->links,
 					pad->m_uid_p, VARS_DB->uid_p, VARS_DB->uid,
 					pad->m_gid_p, VARS_DB->gid_p, VARS_DB->gid,
 					pad->m_size_mm_p, VARS_DB->size_mm_p, VARS_DB->size_mm,
