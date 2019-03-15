@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 12:20:02 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 15:48:25 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,6 @@ void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 		}
 		vars = vars->next;
 	}
+//	if (opt->check)
+		//printf("\n");
 }

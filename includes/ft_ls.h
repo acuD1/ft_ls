@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 12:19:53 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 14:51:57 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define HALF_B ((t_ls*)(half_b->content))
 # define TMP_DB ((t_ls*)(tmp->content))
 # define DIRS_DB ((t_ls*)(dirs->content))
+# define DIR_C_DB ((t_ls*)(dir_content->content))
 # define MAX 16384
 
 typedef struct	s_mprintf
@@ -56,6 +57,7 @@ typedef	struct	s_opt
 	int			l;
 	int			r;
 	int			t;
+	int			check;
 }				t_opt;
 
 typedef	struct	s_ls
@@ -90,7 +92,7 @@ t_list			*fill_vars_files(t_list *vars);
 int				free_vars(t_list *vars);
 int				free_lst(t_list *lst);
 char			*get_dir_path(char *dir_path, char *dir, char *name);
-void			dirs_normal(t_list *dirs, t_opt *opt, size_t n_dirs);
+void			dirs_normal(char *var, t_opt *opt, int n_dirs);
 int				get_blocks(t_list *vars);
 
 /*
@@ -133,5 +135,6 @@ int				get_int_pad(int	i);
 */
 
 void			print_test(t_list *tmp);
+void			dirs_recursive(char *var, t_opt *opt, size_t n_dirs);
 
 #endif
