@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dev2.c                                             :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/13 11:46:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 10:15:42 by arsciand         ###   ########.fr       */
+/*   Created: 2019/03/15 10:16:58 by arsciand          #+#    #+#             */
+/*   Updated: 2019/03/15 10:17:14 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	print_test(t_list *tmp)
+char		*get_dir_path(char *dir_path, char *dir, char *name)
 {
-	printf("\nDEBUG PROCESS_VARS\n\n");
-	while (tmp)
-	{
-		if (((t_ls*)tmp->content)->type == 'd')
-			printf("dirs = %s\n", ((t_ls*)tmp->content)->var);
-		if (((t_ls*)tmp->content)->type == '-')
-			printf("files = %s\n", ((t_ls*)tmp->content)->var);
-		tmp = tmp->next;
-	}
+	ft_bzero(dir_path, MAX);
+	ft_strcpy(dir_path, dir);
+	ft_strcat(dir_path, "/");
+	ft_strcat(dir_path, name);
+	return (dir_path);
 }

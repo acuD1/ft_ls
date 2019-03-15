@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/13 11:47:40 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/15 10:33:08 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define HALF_A ((t_ls*)(half_a->content))
 # define HALF_B ((t_ls*)(half_b->content))
 # define TMP_DB ((t_ls*)(tmp->content))
-# define DIRS_DB ((t_ls*)(dirs->content)
+# define DIRS_DB ((t_ls*)(dirs->content))
 # define MAX 16384
 
 typedef struct	s_mprintf
@@ -83,8 +83,13 @@ typedef	struct	s_ls
 
 t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db);
 void			sort_vars(t_list **vars, t_opt *opt);
+void			ls_vars(t_list **vars, t_opt *opt, t_pad *pad);
+t_list			*fill_vars_dirs(t_list *vars);
+t_list			*fill_vars_files(t_list *vars);
 int				free_vars(t_list *vars);
-
+int				free_lst(t_list *lst);
+char			*get_dir_path(char *dir_path, char *dir, char *name);
+void			dirs_normal(t_list *dirs, t_opt *opt, size_t n_dirs);
 /*
 **	Display
 */
@@ -118,15 +123,11 @@ int				get_int_pad(int	i);
 ** dev
 */
 
-void	process_vars(t_list **vars, t_opt *opt, t_pad *pad);
 
 /*
 ** dev2
 */
 
-int		free_lst(t_list *lst);
-t_list	*fill_vars_dirs(t_list *vars);
-t_list	*fill_vars_files(t_list *vars);
 void	print_test(t_list *tmp);
 
 #endif
