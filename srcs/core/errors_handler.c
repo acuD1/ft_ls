@@ -6,11 +6,18 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 13:00:24 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 13:20:01 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+t_list	*usage(void)
+{
+	ft_putendl("ls: illegal option -- -");
+	ft_putendl("Usage : ./ft_ls [-Ralrt] [file ...]");
+	return (NULL);
+}
 
 void	lstat_failure(char *av, int *fail)
 {

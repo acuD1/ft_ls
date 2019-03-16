@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 13:00:04 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 15:53:31 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef	struct	s_opt
 	int			t;
 	int			check;
 	int			check_files;
+	int			multiple;
+	int			no;
 }				t_opt;
 
 typedef	struct	s_ls
@@ -143,5 +145,6 @@ void	lstat_failure(char *av, int *fail);
 
 void			print_test(t_list *tmp);
 void			print_dirs(char *var, t_opt *opt, size_t n_dirs);
-
+void	dirs_normal(char *var, t_opt *opt, int n_dirs);
+void	dirs_recursive(char *var, t_opt *opt, size_t n_dirs, int size);
 #endif

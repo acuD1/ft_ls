@@ -106,6 +106,7 @@ SRC += $(S_PATH)ft_strjoin_free.c
 SRC += $(S_PATH)ft_strlcat.c
 SRC += $(S_PATH)ft_strlen.c
 SRC += $(S_PATH)ft_strncat.c
+SRC += $(S_PATH)ft_strnrchr.c
 SRC += $(S_PATH)ft_strncmp.c
 SRC += $(S_PATH)ft_strncpy.c
 SRC += $(S_PATH)ft_strnequ.c

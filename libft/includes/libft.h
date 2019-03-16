@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 11:08:12 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/09 14:42:15 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 14:14:32 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char				*ft_strjoin_free(char *s1, char *s2, int vars);
 size_t				ft_strlcat(char *dst, char const *s, size_t len);
 size_t				ft_strlen(char const *s);
 char				*ft_strncat(char *dst, char const *s, size_t n);
+int					ft_strnrchr(char const *s, char c);
 int					ft_strncmp(char const *s1, char const *s2, size_t n);
 char				*ft_strncpy(char *dst, char const *s, size_t n);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
