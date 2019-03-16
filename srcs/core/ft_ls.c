@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 11:24:29 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 12:42:48 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		main(int ac, char **av)
 		return (0);
 	if (!(vars = get_vars(ac, av, &opt, db)))
 		return (0);
-//	print_vars_db(vars);									// DEBUG
+	print_vars_db(vars);									// DEBUG
 //	print_opt(opt);											// DEBUG
 	get_pad(vars, &pad);
 //	printf("\nDefault INPUT w/o process_data\n\n");			// DEBUG

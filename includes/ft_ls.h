@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 10:47:57 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 13:00:04 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <grp.h>
 # include <time.h>
 # include <stdio.h>
+# include <errno.h>
 
 # define VARS_DB ((t_ls*)(vars->content))
 # define HALF_A ((t_ls*)(half_a->content))
@@ -124,6 +125,12 @@ int				get_smmguid_pad(char *guid);
 char			*get_minor_pad(char *min);
 char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 int				get_int_pad(int	i);
+
+/*
+**	error_hanlders
+*/
+
+void	lstat_failure(char *av, int *fail);
 
 /*
 ** dev

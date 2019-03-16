@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 10:48:28 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 12:40:34 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,34 @@ t_list	*fetch_dir_content(char *var, DIR *content, t_opt *opt)
 	return (dir_content);
 }
 
+t_list		*failed_opendir(char *var)
+{
+	(void)var;
+	/*
+	ft_putstr_fd(var, 2);
+	ft_putstr_fd("ft_ls: ", 2);
+	ft_putstr_fd(": ", 2);
+	perror(0);
+	strerror(errno);*/
+	printf("FAIL\n");
+	return (NULL);
+}
+
 t_list	*get_dir_content(char *var, t_opt *opt)
 {
 	DIR		*content;
 	t_list	*dir_content;
 
-	content = opendir(var);
+	//printf("??%s\n", var);
+	if (!(content = opendir(var)))
+	{
+		return (failed_opendir(var));
+	}
 	dir_content = fetch_dir_content(var, content, opt);
 	closedir(content);
 	return (dir_content);
 }
+
 
 void	print_dirs(char *var, t_opt *opt, size_t n_dirs)
 {
@@ -56,9 +74,14 @@ void	print_dirs(char *var, t_opt *opt, size_t n_dirs)
 	t_pad	pad;
 
 	ft_bzero(&pad, sizeof(t_pad));
-	dir_content = get_dir_content(var, opt);
-	if (dir_content->next && opt->big_r)
-		printf("\n");
+//	printf("?%s\n", var);
+	if (!(dir_content = get_dir_content(var, opt)))
+	{
+	//	printf("\n");
+		return ;
+	}
+//	if (dir_content->next && opt->big_r)
+		//printf("\n");
 	if (!(opt->check_files) || n_dirs > 1)
 		ft_mprintf(1, "%s:\n", var);
 	opt->check_files = 0;

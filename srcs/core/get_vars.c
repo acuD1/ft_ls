@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/13 10:53:52 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 13:02:52 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ static int		fill_opt(t_opt *opt, char av)
 
 static t_list	*fill_vars(int ac, char **av, int i, t_ls *db)
 {
-	t_list	*vars;
+	struct stat	db_stat;
+	t_list		*vars;
+	int			fail;
 
 	vars = NULL;
 	if (!(av[i]))
@@ -44,8 +46,12 @@ static t_list	*fill_vars(int ac, char **av, int i, t_ls *db)
 	{
 		while (i < ac)
 		{
-			ft_lstpushback(&vars,
-				ft_lstnew(fetch_db(db, av[i], av[i]), sizeof(t_ls)));
+			fail = 0;
+			if (lstat(av[i], &db_stat))
+				lstat_failure(av[i], &fail);
+			if (!(fail))
+				ft_lstpushback(&vars,
+					ft_lstnew(fetch_db(db, av[i], av[i]), sizeof(t_ls)));
 			i++;
 		}
 		return (vars);

@@ -68,6 +68,7 @@ SRC += $(S_PATH)core/sort.c
 SRC += $(S_PATH)core/ls_vars.c
 SRC += $(S_PATH)core/lst_filler.c
 SRC += $(S_PATH)core/tools.c
+SRC += $(S_PATH)core/errors_handler.c
 
 SRC += $(S_PATH)display/ft_mprintf.c
 SRC += $(S_PATH)display/mprintf_tools.c
