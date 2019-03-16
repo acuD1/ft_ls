@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 10:11:18 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 10:31:54 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 10:55:52 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@ void	process_dirs(t_list *dirs, t_opt *opt, size_t n_dirs)
 {
 	while (dirs != NULL)
 	{
-		if (opt->big_r)
-			dirs_recursive(DIRS_DB->var, opt, n_dirs);
-		else
-		{
-			dirs_normal(DIRS_DB->var, opt, n_dirs);
-			if (dirs->next)
-				printf("\n");
-		}
+		print_dirs(DIRS_DB->var, opt, n_dirs);
+		if (dirs->next && !opt->big_r)
+			printf("\n");
 		dirs = dirs->next;
 	}
 }

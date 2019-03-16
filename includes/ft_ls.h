@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 09:19:47 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 10:47:57 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ t_list			*fill_vars_files(t_list *vars);
 int				free_vars(t_list *vars);
 int				free_lst(t_list *lst);
 char			*get_dir_path(char *dir_path, char *dir, char *name);
-void			dirs_normal(char *var, t_opt *opt, int n_dirs);
 int				get_blocks(t_list *vars);
 
 /*
@@ -136,6 +135,6 @@ int				get_int_pad(int	i);
 */
 
 void			print_test(t_list *tmp);
-void			dirs_recursive(char *var, t_opt *opt, size_t n_dirs);
+void			print_dirs(char *var, t_opt *opt, size_t n_dirs);
 
 #endif
