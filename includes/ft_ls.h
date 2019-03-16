@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 14:51:57 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 09:19:47 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef	struct	s_opt
 	int			r;
 	int			t;
 	int			check;
+	int			check_files;
 }				t_opt;
 
 typedef	struct	s_ls

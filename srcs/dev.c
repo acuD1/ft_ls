@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 15:55:54 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 09:37:30 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	dirs_normal(char *var, t_opt *opt, int n_dirs)
 	t_pad	pad;
 
 	ft_bzero(&pad, sizeof(t_pad));
-	if (n_dirs > 1)
+	if (n_dirs > 1 || !(opt->check_files))
 		ft_mprintf(1, "%s:\n", var);
 	dir_content = get_dir_content(var, opt);
 	sort_vars(&dir_content, opt);
@@ -78,19 +78,14 @@ void	dirs_recursive(char *var, t_opt *opt, size_t n_dirs)
 	t_list	*to_free;
 	char 	path[MAX];
 	t_pad	pad;
-	t_list *tmp;
 
-//	ft_bzero(&pad, sizeof(t_pad));
-	ft_mprintf(1, "%s:\n", var);
+	if (!(opt->check_files))
+		ft_mprintf(1, "%s:\n", var);
+	opt->check_files = 0;
 	dir_content = get_dir_content(var, opt);
 	sort_vars(&dir_content, opt);
 	get_pad(dir_content, &pad);
-	opt->check = 1;
-	check_end(&dir_content, opt);
 	print_files(dir_content, opt, &pad, n_dirs);
-	tmp = dir_content;
-	if (tmp->next != NULL)
-		printf("\n");
 	to_free = dir_content;
 	while (dir_content)
 	{
