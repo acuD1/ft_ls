@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 09:37:30 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/16 10:27:42 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,6 @@ void	dirs_normal(char *var, t_opt *opt, int n_dirs)
 	free_vars(dir_content);
 }
 
-void	check_end(t_list **dir_content, t_opt *opt)
-{
-	t_list	*tmp;
-
-	tmp = *dir_content;
-	if (tmp->next == NULL)
-		opt->check = 0;
-}
-
 void	dirs_recursive(char *var, t_opt *opt, size_t n_dirs)
 {
 	t_list	*dir_content;
@@ -79,10 +70,13 @@ void	dirs_recursive(char *var, t_opt *opt, size_t n_dirs)
 	char 	path[MAX];
 	t_pad	pad;
 
-	if (!(opt->check_files))
+	ft_bzero(&pad, sizeof(t_pad));
+	dir_content = get_dir_content(var, opt);
+	if (dir_content->next)
+		printf("\n");
+	if (!(opt->check_files) || n_dirs > 1)
 		ft_mprintf(1, "%s:\n", var);
 	opt->check_files = 0;
-	dir_content = get_dir_content(var, opt);
 	sort_vars(&dir_content, opt);
 	get_pad(dir_content, &pad);
 	print_files(dir_content, opt, &pad, n_dirs);
