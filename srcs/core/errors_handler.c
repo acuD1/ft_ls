@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 13:20:01 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/17 14:42:44 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,14 @@ void	lstat_failure(char *av, int *fail)
 	perror(0);
 	strerror(errno);
 	*fail = 1;
+}
+
+t_list	*failed_opendir(char *var)
+{
+	ft_mprintf(1, "%s:\n", var);
+	ft_putstr_fd("ft_ls: ", 2);
+	ft_putstr_fd(var + ft_strnrchr(var, '/'), 2);
+	ft_putstr_fd(": ", 2);
+	perror(0);
+	return (NULL);
 }

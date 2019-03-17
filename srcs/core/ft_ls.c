@@ -6,11 +6,30 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 13:20:49 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/17 14:41:03 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void	get_output(t_list **vars, t_opt *opt, t_pad *pad)
+{
+	t_list	*dirs;
+	t_list	*files;
+	size_t	n_dirs;
+
+	dirs = fill_vars_dirs(*vars);
+	if (!(files = fill_vars_files(*vars)))
+		opt->check_files = 1;
+	n_dirs = ft_lstlen(dirs);
+	if (files)
+		print_files(files, opt, pad, 0);
+	if (files && dirs)
+		printf("\n");
+	process_dirs(dirs, opt, n_dirs);
+	free_lst(files);
+	free_lst(dirs);
+}
 
 int		main(int ac, char **av)
 {
@@ -25,15 +44,9 @@ int		main(int ac, char **av)
 		return (0);
 	if (!(vars = get_vars(ac, av, &opt, db)))
 		return (0);
-//	print_vars_db(vars);									// DEBUG
-//	print_opt(opt);											// DEBUG
 	get_pad(vars, &pad);
-//	printf("\nDefault INPUT w/o process_data\n\n");			// DEBUG
-//	print_files(vars, &opt, &pad, n_dirs);				// DEBUG
 	sort_vars(&vars, &opt);
-//	printf("\n[%s] OUTPUT w/o process_data\n\n", av[1]);	// DEBUG
-//	print_files(vars, &opt, &pad, n_dirs);				// DEBUG
-	ls_vars(&vars, &opt, &pad);
+	get_output(&vars, &opt, &pad);
 	free_vars(vars);
 	free(db);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 11:33:39 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/17 14:44:16 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,9 @@ typedef	struct	s_opt
 	int			l;
 	int			r;
 	int			t;
-	int			check;
 	int			check_files;
-	int			multiple;
-	int			no;
-	int			go;
 	int			no_d;
-	int			yoyo;
+	int			no_n;
 }				t_opt;
 
 typedef	struct	s_ls
@@ -94,27 +90,13 @@ typedef	struct	s_ls
 
 t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db);
 void			sort_vars(t_list **vars, t_opt *opt);
-void			ls_vars(t_list **vars, t_opt *opt, t_pad *pad);
+void			process_dirs(t_list *dirs, t_opt *opt, size_t n_dirs);
 t_list			*fill_vars_dirs(t_list *vars);
 t_list			*fill_vars_files(t_list *vars);
-int				free_vars(t_list *vars);
-int				free_lst(t_list *lst);
 char			*get_dir_path(char *dir_path, char *dir, char *name);
 int				get_blocks(t_list *vars);
-
-/*
-**	Display
-*/
-
-void			ft_mprintf(int fd, const char *str, ...);
-int				buff_fill_int(int arg, char *buff, t_mprintf *s_mpf);
-int				buff_fill_char(int arg, char *buff, t_mprintf *s_mpf);
-int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
-void			print_opt(t_opt opt);
-void			print_vars_db(t_list *vars);
-t_list			*usage(void);
-void			print_files(t_list *vars, t_opt *opt,
-					t_pad *pad, size_t n_dirs);
+int				free_vars(t_list *vars);
+int				free_lst(t_list *lst);
 
 /*
 **	db
@@ -133,22 +115,30 @@ char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 int				get_int_pad(int	i);
 
 /*
+**	Display
+*/
+
+void			ft_mprintf(int fd, const char *str, ...);
+int				buff_fill_int(int arg, char *buff, t_mprintf *s_mpf);
+int				buff_fill_char(int arg, char *buff, t_mprintf *s_mpf);
+int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
+void			print_files(t_list *vars, t_opt *opt,
+					t_pad *pad, size_t n_dirs);
+
+/*
 **	error_hanlders
 */
 
-void	lstat_failure(char *av, int *fail);
+void			lstat_failure(char *av, int *fail);
+t_list			*failed_opendir(char *var);
+t_list			*usage(void);
 
 /*
 ** dev
 */
 
-
-/*
-** dev2
-*/
-
 void			print_test(t_list *tmp);
-void			print_dirs(char *var, t_opt *opt, size_t n_dirs);
-void	dirs_normal(char *var, t_opt *opt, int n_dirs, int size);
-void	dirs_recursive(char *var, t_opt *opt, size_t n_dirs, int size);
+void			print_opt(t_opt opt);
+void			print_vars_db(t_list *vars);
+
 #endif

@@ -65,14 +65,14 @@ SRC += $(S_PATH)core/ft_ls.c
 SRC += $(S_PATH)core/get_vars.c
 SRC += $(S_PATH)core/free.c
 SRC += $(S_PATH)core/sort.c
-SRC += $(S_PATH)core/ls_vars.c
-SRC += $(S_PATH)core/lst_filler.c
+SRC += $(S_PATH)core/fill_lists.c
 SRC += $(S_PATH)core/tools.c
 SRC += $(S_PATH)core/errors_handler.c
+SRC += $(S_PATH)core/process_dirs.c
 
 SRC += $(S_PATH)display/ft_mprintf.c
 SRC += $(S_PATH)display/mprintf_tools.c
-SRC += $(S_PATH)display/display.c
+SRC += $(S_PATH)display/print_files.c
 
 SRC += $(S_PATH)db/fetch_db.c
 SRC += $(S_PATH)db/get_type.c
@@ -83,7 +83,6 @@ SRC += $(S_PATH)db/get_pad.c
 SRC += $(S_PATH)db/get_size_mm.c
 
 SRC+=$(S_PATH)dev.c
-SRC+=$(S_PATH)dev2.c
 
 # Objects and Headers
 
