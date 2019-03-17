@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:50:51 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/17 15:29:28 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@ static void	get_output(t_list **vars, t_opt *opt, t_pad *pad)
 {
 	t_list	*dirs;
 	t_list	*files;
-	size_t	n_dirs;
+	size_t	n;
 
 	dirs = fill_vars_dirs(*vars);
 	if (!(files = fill_vars_files(*vars)))
 		opt->check_files = 1;
-	n_dirs = ft_lstlen(dirs);
+	n = ft_lstlen(dirs);
 	if (files)
+	{
+		ft_bzero(pad, sizeof(t_pad));
+		get_pad(files, pad);
 		print_files(files, opt, pad, 0);
+	}
 	if (files && dirs)
 		printf("\n");
-	process_dirs(dirs, opt, n_dirs);
+	process_dirs(dirs, opt, n);
 	free_lst(files);
 	free_lst(dirs);
 }

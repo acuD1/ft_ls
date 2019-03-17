@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:51:43 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/17 15:13:40 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void		format_output(t_opt *opt, size_t n_dirs, char *var)
 	opt->check_files = 0;
 }
 
-static void		print_dirs(char *var, t_opt *opt, size_t n_dirs, int size)
+static void		print_dirs(char *var, t_opt *opt, size_t n, int len)
 {
 	t_list	*dir_content;
 	t_list	*to_free;
@@ -73,19 +73,19 @@ static void		print_dirs(char *var, t_opt *opt, size_t n_dirs, int size)
 	t_pad	pad;
 
 	opt->no_d = 0;
+	ft_bzero(&pad, sizeof(t_pad));
 	dir_content = get_dir_content(var, opt);
-	format_output(opt, n_dirs, var);
+	format_output(opt, n, var);
 	sort_vars(&dir_content, opt);
 	get_pad(dir_content, &pad);
-	print_files(dir_content, opt, &pad, n_dirs);
+	print_files(dir_content, opt, &pad, n);
 	if (opt->big_r)
 	{
 		to_free = dir_content;
 		while (dir_content)
 		{
 			if (DIR_C_DB->type == 'd')
-				print_dirs(get_dir_path(path, var, DIR_C_DB->var),
-					opt, n_dirs, size);
+				print_dirs(get_dir_path(path, var, DIR_C_DB->var), opt, n, len);
 			dir_content = dir_content->next;
 		}
 		free_vars(to_free);
@@ -94,19 +94,19 @@ static void		print_dirs(char *var, t_opt *opt, size_t n_dirs, int size)
 		free_vars(dir_content);
 }
 
-void	process_dirs(t_list *dirs, t_opt *opt, size_t n_dirs)
+void	process_dirs(t_list *dirs, t_opt *opt, size_t n)
 {
-	int		size;
+	int		len;
 	int		max;
 
-	size = ft_lstlen(dirs);
-	max = size;
+	len = ft_lstlen(dirs);
+	max = len;
 	while (dirs != NULL)
 	{
-		if (size == max)
+		if (len == max)
 			opt->no_n = 1;
-		print_dirs(DIRS_DB->var, opt, n_dirs, size);
+		print_dirs(DIRS_DB->var, opt, n, len);
 		dirs = dirs->next;
-		size--;
+		len--;
 	}
 }
