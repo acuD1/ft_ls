@@ -6,13 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:41:03 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/17 14:50:51 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	get_output(t_list **vars, t_opt *opt, t_pad *pad)
+static void	get_output(t_list **vars, t_opt *opt, t_pad *pad)
 {
 	t_list	*dirs;
 	t_list	*files;
@@ -31,7 +31,7 @@ void	get_output(t_list **vars, t_opt *opt, t_pad *pad)
 	free_lst(dirs);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_opt	opt;
 	t_ls	*db;

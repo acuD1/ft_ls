@@ -6,13 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:43:46 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/17 14:51:43 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_list	*fetch_dir_content(char *var, DIR *content, t_opt *opt)
+static t_list	*fetch_dir_content(char *var, DIR *content, t_opt *opt)
 {
 	t_list			*dir_content;
 	t_ls			*db;
@@ -37,7 +37,7 @@ t_list	*fetch_dir_content(char *var, DIR *content, t_opt *opt)
 	return (dir_content);
 }
 
-t_list	*get_dir_content(char *var, t_opt *opt)
+static t_list	*get_dir_content(char *var, t_opt *opt)
 {
 	DIR		*content;
 	t_list	*dir_content;
@@ -54,7 +54,7 @@ t_list	*get_dir_content(char *var, t_opt *opt)
 	return (dir_content);
 }
 
-void	format_output(t_opt *opt, size_t n_dirs, char *var)
+static void		format_output(t_opt *opt, size_t n_dirs, char *var)
 {
 	if (!opt->no_n && opt->no_d == 0)
 		write(1, "\n", 1);
@@ -65,7 +65,7 @@ void	format_output(t_opt *opt, size_t n_dirs, char *var)
 	opt->check_files = 0;
 }
 
-void	print_dirs(char *var, t_opt *opt, size_t n_dirs, int size)
+static void		print_dirs(char *var, t_opt *opt, size_t n_dirs, int size)
 {
 	t_list	*dir_content;
 	t_list	*to_free;
