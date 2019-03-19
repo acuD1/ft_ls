@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 15:13:40 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 09:36:50 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static t_list	*fetch_dir_content(char *var, DIR *content, t_opt *opt)
 	struct dirent	*dir;
 	char			*dir_path;
 
-	(void)opt;
 	if (!(db = (t_ls*)malloc(sizeof(t_ls))))
 		return (0);
 	dir_path = ft_strnew(MAX);
@@ -79,22 +78,22 @@ static void		print_dirs(char *var, t_opt *opt, size_t n, int len)
 	sort_vars(&dir_content, opt);
 	get_pad(dir_content, &pad);
 	print_files(dir_content, opt, &pad, n);
-	if (opt->big_r)
+	to_free = dir_content;
+	while (dir_content && opt->big_r)
 	{
-		to_free = dir_content;
-		while (dir_content)
+		if (ft_strequ(DIR_C_DB->var, ".") || ft_strequ(DIR_C_DB->var, ".."))
 		{
-			if (DIR_C_DB->type == 'd')
-				print_dirs(get_dir_path(path, var, DIR_C_DB->var), opt, n, len);
 			dir_content = dir_content->next;
+			continue;
 		}
-		free_vars(to_free);
+		if (DIR_C_DB->type == 'd')
+			print_dirs(get_dir_path(path, var, DIR_C_DB->var), opt, n, len);
+		dir_content = dir_content->next;
 	}
-	else
-		free_vars(dir_content);
+	dirs_free(to_free, dir_content, opt);
 }
 
-void	process_dirs(t_list *dirs, t_opt *opt, size_t n)
+void			process_dirs(t_list *dirs, t_opt *opt, size_t n)
 {
 	int		len;
 	int		max;

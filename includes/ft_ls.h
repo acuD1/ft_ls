@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:54:20 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 09:36:25 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char			*get_dir_path(char *dir_path, char *dir, char *name);
 int				get_blocks(t_list *vars);
 int				free_vars(t_list *vars);
 int				free_lst(t_list *lst);
+void			dirs_free(t_list *to_free, t_list *dir_content, t_opt *opt);
 
 /*
 **	db
