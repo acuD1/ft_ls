@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/19 09:36:50 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 10:41:10 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ static void		format_output(t_opt *opt, size_t n_dirs, char *var)
 	if (!opt->no_n && opt->no_d == 0)
 		write(1, "\n", 1);
 	opt->no_n = 0;
-	if (!(opt->check_files) || n_dirs > 1)
-		if (!opt->no_d)
-			ft_mprintf(1, "%s:\n", var);
+	if (opt->lstat_first_arg)
+		ft_mprintf(1, "%s:\n", var);
+	else if (!(opt->check_files) || n_dirs > 1)
+			if (!opt->no_d)
+				ft_mprintf(1, "%s:\n", var);
 	opt->check_files = 0;
 }
 

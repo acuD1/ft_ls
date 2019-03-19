@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_filler.c                                       :+:      :+:    :+:   */
+/*   fill_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 10:13:09 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:25:45 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 10:09:49 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_list	*fill_vars_files(t_list *vars)
 	files = NULL;
 	while (vars != NULL)
 	{
-		if (((t_ls*)vars->content)->type == '-')
+		if (VARS_DB->type != 'd')
 			ft_lstpushback(&files, ft_lstnew(VARS_DB, sizeof(t_ls)));
 		vars = vars->next;
 	}

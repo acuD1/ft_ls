@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/16 13:19:04 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 10:59:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ static t_list	*fill_vars(int ac, char **av, int i, t_ls *db)
 	}
 }
 
+void			check_first_arg(char **av, int i, t_opt *opt)
+{
+	struct stat db_stat;
+
+	if (lstat(av[i], &db_stat))
+		opt->lstat_first_arg = 1;
+}
+
 t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)
 {
 	int		i;
@@ -68,7 +76,7 @@ t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)
 	{
 		j = 0;
 		if (av[i][0] == '-' && av[i][1] == '-' && av[i][2])
-			return (usage());
+			return (usage(av[i], 1));
 		else if (av[i][0] == '-' && av[i][1] == '-')
 		{
 			i++;
@@ -78,10 +86,11 @@ t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)
 		{
 			while (av[i][j])
 				if (!(fill_opt(opt, av[i][j++])))
-					return (usage());
+					return (usage(av[i], 0));
 		}
 		else
 			break ;
 	}
+	check_first_arg(av, i, opt);
 	return (fill_vars(ac, av, i, db));
 }

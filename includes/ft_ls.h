@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/19 09:36:25 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 10:48:46 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef	struct	s_opt
 	int			check_files;
 	int			no_d;
 	int			no_n;
+	int			lstat_first_arg;
 }				t_opt;
 
 typedef	struct	s_ls
@@ -132,7 +133,7 @@ void			print_files(t_list *vars, t_opt *opt,
 
 void			lstat_failure(char *av, int *fail);
 t_list			*failed_opendir(char *var);
-t_list			*usage(void);
+t_list			*usage(char *av, int flag);
 
 /*
 ** dev

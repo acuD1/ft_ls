@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 15:29:28 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:01:48 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ int			main(int ac, char **av)
 	if (!(db = (t_ls*)malloc(sizeof(t_ls))))
 		return (0);
 	if (!(vars = get_vars(ac, av, &opt, db)))
+	{
+		free(db);
 		return (0);
+	}
 	get_pad(vars, &pad);
 	sort_vars(&vars, &opt);
 	get_output(&vars, &opt, &pad);
