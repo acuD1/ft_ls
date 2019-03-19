@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/19 10:59:51 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:07:11 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*usage(char *av, int flag)
 	if (flag == 1)
 	{
 		ft_putendl("ft_ls: illegal option -- -");
-	ft_putendl("usage : ./ft_ls [-Ralrt] [file ...]");
+		ft_putendl("usage : ./ft_ls [-Ralrt] [file ...]");
 	}
 	else
 	{

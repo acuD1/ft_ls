@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 14:23:32 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/03 11:04:20 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:37:08 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_perms(struct stat db_stat)
 	perms[7] = (db_stat.st_mode & S_IROTH) ? 'r' : '-';
 	perms[8] = (db_stat.st_mode & S_IWOTH) ? 'w' : '-';
 	if ((db_stat.st_mode & S_ISVTX))
-		perms[9] = 't';
+		perms[9] = 'T';
 	else if ((db_stat.st_mode & S_IXOTH))
 		perms[9] = 'x';
 	else
