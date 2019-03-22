@@ -81,6 +81,7 @@ SRC += $(S_PATH)db/get_id.c
 SRC += $(S_PATH)db/get_time.c
 SRC += $(S_PATH)db/get_pad.c
 SRC += $(S_PATH)db/get_size_mm.c
+SRC += $(S_PATH)db/get_link.c
 
 SRC+=$(S_PATH)dev.c
 

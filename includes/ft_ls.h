@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/22 14:38:01 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/22 14:43:48 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int				get_smmguid_pad(char *guid);
 char			*get_minor_pad(char *min);
 char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 int				get_int_pad(int	i);
+char			*get_link(char *var, t_ls *db);
 
 /*
 **	Display
