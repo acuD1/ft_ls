@@ -6,11 +6,29 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/15 11:13:15 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/22 10:27:37 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+char	*get_link(char *var, t_ls *db)
+{
+	char string[MAX + 1];
+	char *tmp;
+
+	ft_bzero(string, MAX + 1);
+	if (db->type == 'l')
+	{
+		readlink(var, string, MAX + 1);
+		tmp = ft_strdup(" -> ");
+		tmp = ft_strjoin_free(tmp, string, 1);
+		ft_bzero(string, MAX + 1);
+		return (tmp);
+	}
+	else
+		return (ft_strdup(""));
+}
 
 t_ls	*fetch_db(t_ls *db, char *av, char *name)
 {
@@ -32,5 +50,6 @@ t_ls	*fetch_db(t_ls *db, char *av, char *name)
 	db->mtime = get_time(db_stat);
 	db->time_digit = db_stat.st_mtime;
 	db->block = db_stat.st_blocks;
+	db->link_path = get_link(av, db);
 	return (db);
 }

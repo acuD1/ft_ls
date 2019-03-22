@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/19 10:41:10 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/22 10:25:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static t_list	*get_dir_content(char *var, t_opt *opt)
 	DIR		*content;
 	t_list	*dir_content;
 
+	opt->empty = 0;
 	if (!(content = opendir(var)))
 	{
 		opt->no_d = 1;
@@ -49,6 +50,8 @@ static t_list	*get_dir_content(char *var, t_opt *opt)
 		return (failed_opendir(var));
 	}
 	dir_content = fetch_dir_content(var, content, opt);
+	if (!(ft_lstlen(dir_content)))
+		opt->empty = 1;
 	closedir(content);
 	return (dir_content);
 }

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/19 10:48:46 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/22 10:27:24 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef	struct	s_opt
 	int			no_d;
 	int			no_n;
 	int			lstat_first_arg;
+	int			empty;
 }				t_opt;
 
 typedef	struct	s_ls
@@ -72,6 +73,7 @@ typedef	struct	s_ls
 	char		*gid;
 	char		*mtime;
 	char		*size_mm;
+	char		*link_path;
 	int			links;
 	int			block;
 	int			size;
