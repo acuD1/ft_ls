@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/19 11:07:11 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/22 14:40:30 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,26 @@ t_list	*usage(char *av, int flag)
 	return (NULL);
 }
 
-void	lstat_failure(char *av, int *fail)
+void	print_failed(t_list **vars)
 {
-	ft_putstr_fd("ft_ls: ", 2);
-	ft_putstr_fd(av, 2);
-	ft_putstr_fd(": ", 2);
-	perror(0);
-	strerror(errno);
-	*fail = 1;
+	struct stat	db_stat;
+	t_list		*tmp;
+
+	tmp = *vars;
+	while (tmp)
+	{
+		if (TMP_DB->type == '?')
+		{
+			lstat(TMP_DB->var, &db_stat);
+			ft_putstr_fd("ft_ls: ", 2);
+			ft_putstr_fd(TMP_DB->var, 2);
+			ft_putstr_fd(": ", 2);
+			perror(0);
+			strerror(errno);
+		}
+		tmp = tmp->next;
+	}
+	free_lst(tmp);
 }
 
 t_list	*failed_opendir(char *var)

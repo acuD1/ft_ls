@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 10:13:09 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/19 10:09:49 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/22 14:27:55 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*fill_vars_dirs(t_list *vars)
 	dirs = NULL;
 	while (vars != NULL)
 	{
-		if (VARS_DB->type == 'd')
+		if (VARS_DB->type == 'd' && VARS_DB->type != '?')
 			ft_lstpushback(&dirs, ft_lstnew(VARS_DB, sizeof(t_ls)));
 		vars = vars->next;
 	}
@@ -33,7 +33,7 @@ t_list	*fill_vars_files(t_list *vars)
 	files = NULL;
 	while (vars != NULL)
 	{
-		if (VARS_DB->type != 'd')
+		if (VARS_DB->type != 'd' && VARS_DB->type != '?')
 			ft_lstpushback(&files, ft_lstnew(VARS_DB, sizeof(t_ls)));
 		vars = vars->next;
 	}
