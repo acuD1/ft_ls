@@ -6,11 +6,30 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 10:02:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/23 15:47:00 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+char	*get_color(char type, struct stat db_stat)
+{
+	if ((S_ISREG(db_stat.st_mode) && (db_stat.st_mode & S_ISUID)))
+		return (FRED);
+	else if ((S_ISREG(db_stat.st_mode) && ((db_stat.st_mode & S_IXUSR)
+				|| (db_stat.st_mode & S_IXGRP) || (db_stat.st_mode & S_IXOTH))))
+		return (RED);
+	else if (type == 'd')
+		return (CYA);
+	else if (type == 'l')
+		return (MAG);
+	else if (type == 'c')
+		return (FYEL);
+	else if (type == 'b')
+		return (FBLU);
+	else
+		return (CLR);
+}
 
 t_ls	*fetch_db(t_ls *db, char *av, char *name)
 {
@@ -18,7 +37,6 @@ t_ls	*fetch_db(t_ls *db, char *av, char *name)
 
 	lstat(av, &db_stat);
 	db->var = ft_strdup(name);
-	db->normal_p = get_string_pad(db->var);
 	db->type = get_type(db_stat);
 	db->perms = get_perms(db_stat);
 	db->links = db_stat.st_nlink;
@@ -34,5 +52,7 @@ t_ls	*fetch_db(t_ls *db, char *av, char *name)
 	db->time_digit = db_stat.st_mtime;
 	db->block = db_stat.st_blocks;
 	db->link_path = get_link(av, db);
+	db->color = get_color(db->type, db_stat);
+	db->normal_p = get_string_pad(db->var);
 	return (db);
 }

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 11:14:06 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/23 15:43:45 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@
 # define DIRS_DB ((t_ls*)(dirs->content))
 # define DIR_C_DB ((t_ls*)(dir_content->content))
 # define MAX 16384
+# define CLR "\x1B[0m"
+# define RED "\x1B[31m"
+# define FRED "\x1B[41m\x1B[30m"
+# define FYEL "\x1B[43m\x1B[34m"
+# define FBLU "\x1B[46m\x1B[34m"
+# define MAG "\x1B[35m"
+# define CYA "\x1B[36m"
 
 typedef struct	s_mprintf
 {
@@ -85,6 +92,7 @@ typedef	struct	s_ls
 	char		*mtime;
 	char		*size_mm;
 	char		*link_path;
+	char		*color;
 	int			links;
 	int			block;
 	int			size;
@@ -96,6 +104,7 @@ typedef	struct	s_ls
 	int			time_digit;
 	int			n_dirs;
 	int			stop;
+	int			exec;
 	char		type;
 }				t_ls;
 
