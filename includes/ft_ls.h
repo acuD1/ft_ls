@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 09:32:23 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/23 11:14:06 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <time.h>
 # include <stdio.h>
 # include <errno.h>
+# include <sys/ioctl.h>
 
 # define VARS_DB ((t_ls*)(vars->content))
 # define HALF_A ((t_ls*)(half_a->content))
@@ -49,6 +50,12 @@ typedef struct	s_pad
 	int			m_uid_p;
 	int			m_gid_p;
 	int			m_link_p;
+	int			m_normal_p;
+	int			tmp_size_mm_p;
+	int			tmp_uid_p;
+	int			tmp_gid_p;
+	int			tmp_link_p;
+	int			tmp_normal_p;
 }				t_pad;
 
 typedef	struct	s_opt
@@ -66,6 +73,7 @@ typedef	struct	s_opt
 	int			empty;
 	int			failed;
 	int			no_args;
+	int			width;
 }				t_opt;
 
 typedef	struct	s_ls
@@ -83,6 +91,7 @@ typedef	struct	s_ls
 	int			uid_p;
 	int			gid_p;
 	int			size_mm_p;
+	int			normal_p;
 	int			link_p;
 	int			time_digit;
 	int			n_dirs;
@@ -116,7 +125,7 @@ char			*get_gid(struct stat db_stat);
 char			*get_uid(struct stat db_stat);
 char			*get_time(struct stat db_stat);
 void			get_pad(t_list *vars, t_pad *pad);
-int				get_smmguid_pad(char *guid);
+int				get_string_pad(char *guid);
 char			*get_minor_pad(char *min);
 char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 int				get_int_pad(int	i);
@@ -132,6 +141,7 @@ int				buff_fill_char(int arg, char *buff, t_mprintf *s_mpf);
 int				buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
 void			print_files(t_list *vars, t_opt *opt,
 					t_pad *pad, size_t n_dirs);
+void			get_output_width(t_opt *opt);
 
 /*
 **	error_hanlders

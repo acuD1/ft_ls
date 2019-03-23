@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 11:02:03 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 09:35:58 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/23 11:04:07 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			main(int ac, char **av)
 		free(db);
 		return (0);
 	}
+	get_output_width(&opt);
 	get_pad(vars, &pad);
 	sort_vars(&vars, &opt);
 	print_failed(&vars);

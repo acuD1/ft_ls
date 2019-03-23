@@ -6,13 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:54:37 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/23 09:59:50 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		get_smmguid_pad(char *guid)
+int		get_string_pad(char *guid)
 {
 	int	guid_p;
 
@@ -56,28 +56,26 @@ int		get_int_pad(int i)
 
 void	get_pad(t_list *vars, t_pad *pad)
 {
-	int tmp_size_mm_p;
-	int	tmp_uid_p;
-	int	tmp_gid_p;
-	int	tmp_link_p;
-
 	while (vars)
 	{
-		tmp_size_mm_p = get_smmguid_pad(VARS_DB->size_mm);
-		if ((VARS_DB->type == 'c' && tmp_size_mm_p < 8) ||
-			(VARS_DB->type == 'b' && tmp_size_mm_p < 8))
-			tmp_size_mm_p = 8;
-		tmp_uid_p = get_smmguid_pad(VARS_DB->uid);
-		tmp_gid_p = get_smmguid_pad(VARS_DB->gid);
-		tmp_link_p = get_int_pad(VARS_DB->links);
-		if (tmp_size_mm_p > pad->m_size_mm_p)
-			pad->m_size_mm_p = tmp_size_mm_p;
-		if (tmp_uid_p > pad->m_uid_p)
-			pad->m_uid_p = tmp_uid_p;
-		if (tmp_gid_p > pad->m_gid_p)
-			pad->m_gid_p = tmp_gid_p;
-		if (tmp_link_p > pad->m_link_p)
-			pad->m_link_p = tmp_link_p;
+		pad->tmp_size_mm_p = get_string_pad(VARS_DB->size_mm);
+		if ((VARS_DB->type == 'c' && pad->tmp_size_mm_p < 8) ||
+			(VARS_DB->type == 'b' && pad->tmp_size_mm_p < 8))
+			pad->tmp_size_mm_p = 8;
+		pad->tmp_uid_p = get_string_pad(VARS_DB->uid);
+		pad->tmp_gid_p = get_string_pad(VARS_DB->gid);
+		pad->tmp_link_p = get_int_pad(VARS_DB->links);
+		pad->tmp_normal_p = get_string_pad(VARS_DB->var);
+		if (pad->tmp_normal_p > pad->m_normal_p)
+			pad->m_normal_p = pad->tmp_normal_p;
+		if (pad->tmp_size_mm_p > pad->m_size_mm_p)
+			pad->m_size_mm_p = pad->tmp_size_mm_p;
+		if (pad->tmp_uid_p > pad->m_uid_p)
+			pad->m_uid_p = pad->tmp_uid_p;
+		if (pad->tmp_gid_p > pad->m_gid_p)
+			pad->m_gid_p = pad->tmp_gid_p;
+		if (pad->tmp_link_p > pad->m_link_p)
+			pad->m_link_p = pad->tmp_link_p;
 		vars = vars->next;
 	}
 }

@@ -6,11 +6,43 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 09:35:19 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/23 11:13:35 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void		get_output_width(t_opt *opt)
+{
+	struct winsize width;
+
+	ioctl(0, TIOCGWINSZ, &width);
+	opt->width = width.ws_col;
+}
+
+static void	print_names(t_list *vars, t_opt *opt, t_pad *pad)
+{
+	static int		size;
+	static int		words;
+	static int		max;
+
+	size += pad->m_normal_p + 1;
+	if (size != opt->width)
+		words += 1;
+	max = words * (pad->m_normal_p + 1);
+	if ((max + pad->m_normal_p) >= opt->width)
+	{
+		printf("\n");
+		size = 0;
+		words = 0;
+		max = 0;
+	}
+	ft_mprintf(1, "%-*.*s", pad->m_normal_p, VARS_DB->normal_p, VARS_DB->var);
+	if (vars->next != NULL)
+		ft_mprintf(1, " ");
+	if (vars->next == NULL)
+		ft_mprintf(1, "\n");
+}
 
 void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 {
@@ -29,13 +61,7 @@ void	print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 		else if (opt->one)
 			printf("%s\n", VARS_DB->var);
 		else
-		{
-			ft_mprintf(1, "%s", VARS_DB->var);
-			if (vars->next != NULL)
-				ft_mprintf(1, " ");
-			if (vars->next == NULL)
-				ft_mprintf(1, "\n");
-		}
+			print_names(vars, opt, pad);
 		vars = vars->next;
 	}
 }
