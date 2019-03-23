@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/22 14:38:25 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/23 09:32:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,26 @@
 
 static int		fill_opt(t_opt *opt, char av)
 {
-	if (!(ft_strchr("-Ralrt", av)))
+	if (!(ft_strchr("-Ralrt1", av)))
 		return (0);
 	if (av == 'R')
 		opt->big_r = 1;
 	else if (av == 'a')
 		opt->a = 1;
 	else if (av == 'l')
+	{
 		opt->l = 1;
+		opt->one = 0;
+	}
 	else if (av == 'r')
 		opt->r = 1;
 	else if (av == 't')
 		opt->t = 1;
+	else if (av == '1')
+	{
+		opt->one = 1;
+		opt->l = 0;
+	}
 	return (1);
 }
 
@@ -53,6 +61,8 @@ void			check_first_arg(char **av, int i, t_opt *opt)
 {
 	struct stat db_stat;
 
+	if (!(av[i]))
+		opt->no_args = 1;
 	if (lstat(av[i], &db_stat))
 		opt->lstat_first_arg = 1;
 }
