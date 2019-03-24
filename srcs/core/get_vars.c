@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 09:32:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/24 12:54:19 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		fill_opt(t_opt *opt, char av)
 	return (1);
 }
 
-static t_list	*fill_vars(int ac, char **av, int i, t_ls *db)
+static t_list	*fill_vars(char **av, int i, t_ls *db, t_opt *opt)
 {
 	t_list		*vars;
 
@@ -45,14 +45,14 @@ static t_list	*fill_vars(int ac, char **av, int i, t_ls *db)
 	if (!(av[i]))
 	{
 		ft_lstpushback(&vars,
-			ft_lstnew(fetch_db(db, ".", "."), sizeof(t_ls)));
+			ft_lstnew(fetch_db(db, ".", ".", opt), sizeof(t_ls)));
 		return (vars);
 	}
-	while (i < ac)
+	while (av[i])
 	{
 		ft_lstpushback(&vars,
-			ft_lstnew(fetch_db(db, av[i], av[i]), sizeof(t_ls)));
-		i++;
+			ft_lstnew(fetch_db(db, av[i], av[i], opt), sizeof(t_ls)));
+		av++;
 	}
 	return (vars);
 }
@@ -93,5 +93,5 @@ t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)
 			break ;
 	}
 	check_first_arg(av, i, opt);
-	return (fill_vars(ac, av, i, db));
+	return (fill_vars(av, i, db, opt));
 }

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 15:43:45 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/24 13:22:42 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,19 @@
 # define MAX 16384
 # define CLR "\x1B[0m"
 # define RED "\x1B[31m"
+# define MAG "\x1B[35m"
+# define CYA "\x1B[36m"
+# define YEL "\x1B[33m"
 # define FRED "\x1B[41m\x1B[30m"
 # define FYEL "\x1B[43m\x1B[34m"
 # define FBLU "\x1B[46m\x1B[34m"
-# define MAG "\x1B[35m"
-# define CYA "\x1B[36m"
+# define FBLUB "\x1B[46m\x1B[30m"
+# define FGRE "\x1B[42m\x1B[30m"
+# define NFRED "\x1B[3m\x1B[31m"
+# define NFYEL "\x1B[3m\x1B[33m"
+# define NFBLU "\x1B[3m\x1B[34m"
+# define NFBLUB "\x1B[3m\x1B[96m"
+# define NFGRE "\x1B[3m\x1B[32m"
 
 typedef struct	s_mprintf
 {
@@ -104,7 +112,7 @@ typedef	struct	s_ls
 	int			time_digit;
 	int			n_dirs;
 	int			stop;
-	int			exec;
+	int			no_print;
 	char		type;
 }				t_ls;
 
@@ -121,13 +129,14 @@ char			*get_dir_path(char *dir_path, char *dir, char *name);
 int				get_blocks(t_list *vars);
 int				free_vars(t_list *vars);
 int				free_lst(t_list *lst);
+void			get_output(t_list **vars, t_opt *opt, t_pad *pad);
 void			dirs_free(t_list *to_free, t_list *dir_content, t_opt *opt);
 
 /*
 **	db
 */
 
-t_ls			*fetch_db(t_ls *db, char *av, char *name);
+t_ls			*fetch_db(t_ls *db, char *av, char *name, t_opt *opt);
 char			*get_perms(struct stat db_stat);
 char			get_type(struct stat d_stat);
 char			*get_gid(struct stat db_stat);
@@ -139,7 +148,7 @@ char			*get_minor_pad(char *min);
 char			*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 int				get_int_pad(int	i);
 char			*get_link(char *var, t_ls *db);
-
+char			*get_colors(char type, char *perms, t_opt *opt);
 /*
 **	Display
 */

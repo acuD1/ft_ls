@@ -6,32 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 15:47:00 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/24 13:15:14 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char	*get_color(char type, struct stat db_stat)
-{
-	if ((S_ISREG(db_stat.st_mode) && (db_stat.st_mode & S_ISUID)))
-		return (FRED);
-	else if ((S_ISREG(db_stat.st_mode) && ((db_stat.st_mode & S_IXUSR)
-				|| (db_stat.st_mode & S_IXGRP) || (db_stat.st_mode & S_IXOTH))))
-		return (RED);
-	else if (type == 'd')
-		return (CYA);
-	else if (type == 'l')
-		return (MAG);
-	else if (type == 'c')
-		return (FYEL);
-	else if (type == 'b')
-		return (FBLU);
-	else
-		return (CLR);
-}
-
-t_ls	*fetch_db(t_ls *db, char *av, char *name)
+t_ls	*fetch_db(t_ls *db, char *av, char *name, t_opt *opt)
 {
 	struct stat db_stat;
 
@@ -52,7 +33,7 @@ t_ls	*fetch_db(t_ls *db, char *av, char *name)
 	db->time_digit = db_stat.st_mtime;
 	db->block = db_stat.st_blocks;
 	db->link_path = get_link(av, db);
-	db->color = get_color(db->type, db_stat);
+	db->color = get_colors(db->type, db->perms, opt);
 	db->normal_p = get_string_pad(db->var);
 	return (db);
 }

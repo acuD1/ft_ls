@@ -69,6 +69,7 @@ SRC += $(S_PATH)core/fill_lists.c
 SRC += $(S_PATH)core/tools.c
 SRC += $(S_PATH)core/errors_handler.c
 SRC += $(S_PATH)core/process_dirs.c
+SRC += $(S_PATH)core/get_output.c
 
 SRC += $(S_PATH)display/ft_mprintf.c
 SRC += $(S_PATH)display/mprintf_tools.c
@@ -82,6 +83,7 @@ SRC += $(S_PATH)db/get_time.c
 SRC += $(S_PATH)db/get_pad.c
 SRC += $(S_PATH)db/get_size_mm.c
 SRC += $(S_PATH)db/get_link.c
+SRC += $(S_PATH)db/get_colors.c
 
 SRC+=$(S_PATH)dev.c
 

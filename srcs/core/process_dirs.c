@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 12:12:25 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/24 12:57:49 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_list	*fetch_dir_content(char *var, DIR *content, t_opt *opt)
 		if (!(opt->a) && dir->d_name[0] == '.')
 			continue;
 		ft_lstpushback(&dir_content,
-			ft_lstnew(fetch_db(db, dir_path, dir->d_name), sizeof(t_ls)));
+			ft_lstnew(fetch_db(db, dir_path, dir->d_name, opt), sizeof(t_ls)));
 		continue;
 	}
 	free(dir_path);
