@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 13:15:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/24 13:16:29 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 11:27:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_colors(char type, char *perms, t_opt *opt)
 	else if (type == '-' && (perms[3] == 'x'
 			|| perms[6] == 'x' || perms[9] == 'x'))
 		return (RED);
-	else if (type == 'd' && perms[9] == 't')
+	else if (type == 'd' && perms[9] == 't' && perms[10] == ' ')
 		return (opt->l ? FGRE : NFGRE);
 	else if (type == 'd')
 		return (CYA);

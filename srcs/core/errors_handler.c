@@ -6,26 +6,30 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/22 14:40:30 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 11:29:54 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_list	*usage(char *av, int flag)
+t_list	*usage(char *av, int flag, int i)
 {
-	char	option;
-
 	if (flag == 1)
 	{
 		ft_putendl("ft_ls: illegal option -- -");
-		ft_putendl("usage : ./ft_ls [-Ralrt] [file ...]");
+		ft_putendl("usage: ./ft_ls [-Ralrt] [file ...]");
 	}
 	else
 	{
-		option = av[1];
-		ft_mprintf(1, "ft_ls: illegal option -- %c\n", option);
-		ft_putendl("usage : ./ft_ls [-Ralrt] [file ...]");
+		while (av[i])
+		{
+			if (!(ft_strchr("-Ralrt1@e", av[i])))
+			{
+				ft_mprintf(1, "ft_ls: illegal option -- %c\n", av[i]);
+				ft_putendl("usage : ./ft_ls [-Ralrt] [file ...]");
+			}
+			i++;
+		}
 	}
 	return (NULL);
 }

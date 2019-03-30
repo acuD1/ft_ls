@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/24 12:54:19 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 11:30:00 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		fill_opt(t_opt *opt, char av)
 {
-	if (!(ft_strchr("-Ralrt1", av)))
+	if (!(ft_strchr("-Ralrt1@e", av)))
 		return (0);
 	if (av == 'R')
 		opt->big_r = 1;
@@ -34,6 +34,8 @@ static int		fill_opt(t_opt *opt, char av)
 		opt->one = 1;
 		opt->l = 0;
 	}
+	if (av == '@')
+		opt->xattr = 1;
 	return (1);
 }
 
@@ -77,7 +79,7 @@ t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)
 	{
 		j = 0;
 		if (av[i][0] == '-' && av[i][1] == '-' && av[i][2])
-			return (usage(av[i], 1));
+			return (usage(av[i], 1, i));
 		else if (av[i][0] == '-' && av[i][1] == '-')
 		{
 			i++;
@@ -87,7 +89,7 @@ t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)
 		{
 			while (av[i][j])
 				if (!(fill_opt(opt, av[i][j++])))
-					return (usage(av[i], 0));
+					return (usage(av[i], 0, i));
 		}
 		else
 			break ;

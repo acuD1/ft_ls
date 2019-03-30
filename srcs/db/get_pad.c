@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/23 14:30:45 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 15:56:02 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int		get_int_pad(int i)
 	int pad;
 
 	pad = 0;
+	if (!i)
+		return (1);
 	while (i > 0)
 	{
 		i /= 10;
@@ -54,10 +56,41 @@ int		get_int_pad(int i)
 	return (pad);
 }
 
+void	get_val_pad(t_list *vars, t_pad *pad)
+{
+	t_xattr xattr;
+	int		i;
+
+	i = 0;
+	pad->m_val_p = 4;
+	ft_bzero(&xattr, sizeof(t_xattr));
+	if (VARS_DB->chmod[10] == '@')
+	{
+		xattr.size = listxattr(VARS_DB->av, xattr.tmp, MAX, XATTR_NOFOLLOW);
+		xattr.xattr = ft_strnew(MAX + 1);
+		xattr.size = listxattr(VARS_DB->av, xattr.xattr, MAX, XATTR_NOFOLLOW);
+		xattr.val = getxattr(VARS_DB->av, &xattr.xattr[i], xattr.tmp,
+				NAME_MAX, 0, XATTR_NOFOLLOW | XATTR_SHOWCOMPRESSION);
+		pad->tmp_val_p = get_int_pad(xattr.val);
+		if (pad->tmp_val_p > pad->m_val_p)
+			pad->m_val_p = pad->tmp_val_p;
+		while(i < xattr.size)
+		{
+			pad->tmp_xattr_p = ft_strlen(&xattr.xattr[i]) + 1;
+			if (pad->tmp_xattr_p > pad->m_xattr_p)
+				pad->m_xattr_p = pad->tmp_xattr_p;
+			i += (ft_strlen(&xattr.xattr[i]) + 1);
+		}
+		free(xattr.xattr);
+	}
+}
+
+
 void	get_pad(t_list *vars, t_pad *pad)
 {
 	while (vars)
 	{
+		get_val_pad(vars, pad);
 		pad->tmp_size_mm_p = get_string_pad(VARS_DB->size_mm);
 		if ((VARS_DB->type == 'c' && pad->tmp_size_mm_p < 8) ||
 			(VARS_DB->type == 'b' && pad->tmp_size_mm_p < 8))

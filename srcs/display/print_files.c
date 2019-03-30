@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/24 13:23:59 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 15:55:19 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,32 @@ static void	print_names(t_list *vars, t_opt *opt, t_pad *pad)
 		write(1, "\n", 1);
 }
 
+static void	print_xattr(t_list *vars, t_opt *opt, t_pad *pad)
+{
+	t_xattr xattr;
+	int		i;
+
+	i = 0;
+	ft_bzero(&xattr, sizeof(t_xattr));
+	if (opt->xattr && VARS_DB->chmod[10] == '@')
+	{
+		xattr.size = listxattr(VARS_DB->av, xattr.tmp, MAX, XATTR_NOFOLLOW);
+		xattr.xattr = ft_strnew(MAX + 1);
+		xattr.size = listxattr(VARS_DB->av, xattr.xattr, MAX, XATTR_NOFOLLOW);
+		i = 0;
+		while (i < xattr.size)
+		{
+			xattr.val = getxattr(VARS_DB->av, &xattr.xattr[i], xattr.tmp,
+				NAME_MAX, 0, XATTR_NOFOLLOW | XATTR_SHOWCOMPRESSION);
+			ft_mprintf(1, "        %-*.*s %*.*d\n",
+				pad->m_xattr_p, ft_strlen(&xattr.xattr[i]), &xattr.xattr[i],
+				pad->m_val_p, get_int_pad(xattr.val), xattr.val);
+			i += (ft_strlen(&xattr.xattr[i]) + 1);
+		}
+		free(xattr.xattr);
+	}
+}
+
 void		print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 {
 	if (n_dirs > 0 && opt->l && !opt->no_d && !opt->empty && !opt->one)
@@ -45,14 +71,17 @@ void		print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 	while (vars != NULL)
 	{
 		if (opt->l)
-			ft_mprintf(1, "%s  %*.*d %-*.*s  %-*.*s  %*.*s %s %s%s%s%s\n",
-					VARS_DB->perms,
+		{
+			ft_mprintf(1, "%s %*.*d %-*.*s  %-*.*s  %*.*s %s %s%s%s%s\n",
+					VARS_DB->chmod,
 					pad->m_link_p, VARS_DB->link_p, VARS_DB->links,
 					pad->m_uid_p, VARS_DB->uid_p, VARS_DB->uid,
 					pad->m_gid_p, VARS_DB->gid_p, VARS_DB->gid,
 					pad->m_size_mm_p, VARS_DB->size_mm_p, VARS_DB->size_mm,
 					VARS_DB->mtime, VARS_DB->color, VARS_DB->var, CLR,
 					VARS_DB->link_path);
+			print_xattr(vars, opt, pad);
+		}
 		else if (opt->one)
 			ft_mprintf(1, "%s%s%s\n", VARS_DB->color, VARS_DB->var, CLR);
 		else

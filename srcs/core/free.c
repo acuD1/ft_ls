@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 14:09:22 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/22 10:28:11 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 13:59:10 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int		free_vars(t_list *vars)
 
 	while (vars != NULL)
 	{
+		free(VARS_DB->av);
 		free(VARS_DB->var);
-		free(VARS_DB->perms);
+		acl_free(VARS_DB->acl);
+		free(VARS_DB->chmod);
 		free(VARS_DB->uid);
 		free(VARS_DB->gid);
 		free(VARS_DB->mtime);

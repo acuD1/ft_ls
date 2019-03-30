@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/24 13:22:42 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 15:08:02 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <stdio.h>
 # include <errno.h>
 # include <sys/ioctl.h>
+# include <sys/types.h>
+# include <sys/xattr.h>
+# include <sys/acl.h>
 
 # define VARS_DB ((t_ls*)(vars->content))
 # define HALF_A ((t_ls*)(half_a->content))
@@ -36,7 +39,7 @@
 # define CLR "\x1B[0m"
 # define RED "\x1B[31m"
 # define MAG "\x1B[35m"
-# define CYA "\x1B[36m"
+# define CYA "\x1B[1m\x1B[36m"
 # define YEL "\x1B[33m"
 # define FRED "\x1B[41m\x1B[30m"
 # define FYEL "\x1B[43m\x1B[34m"
@@ -66,15 +69,28 @@ typedef struct	s_pad
 	int			m_gid_p;
 	int			m_link_p;
 	int			m_normal_p;
+	int			m_xattr_p;
+	int			m_val_p;
 	int			tmp_size_mm_p;
 	int			tmp_uid_p;
 	int			tmp_gid_p;
 	int			tmp_link_p;
 	int			tmp_normal_p;
+	int			tmp_xattr_p;
+	int			tmp_val_p;
 }				t_pad;
+
+typedef struct	s_xattr
+{
+	char		*xattr;
+	int			size;
+	int			val;
+	char		tmp[MAX];
+}				t_xattr;
 
 typedef	struct	s_opt
 {
+	int			xattr;
 	int			big_r;
 	int			a;
 	int			l;
@@ -93,8 +109,10 @@ typedef	struct	s_opt
 
 typedef	struct	s_ls
 {
+	acl_t		acl;
+	char		*av;
 	char		*var;
-	char		*perms;
+	char		*chmod;
 	char		*uid;
 	char		*gid;
 	char		*mtime;
@@ -109,6 +127,8 @@ typedef	struct	s_ls
 	int			size_mm_p;
 	int			normal_p;
 	int			link_p;
+	int			xattr_p;
+	int			val_p;
 	int			time_digit;
 	int			n_dirs;
 	int			stop;
@@ -137,7 +157,7 @@ void			dirs_free(t_list *to_free, t_list *dir_content, t_opt *opt);
 */
 
 t_ls			*fetch_db(t_ls *db, char *av, char *name, t_opt *opt);
-char			*get_perms(struct stat db_stat);
+char			*get_chmod(t_ls *db, struct stat db_stat, char *av);
 char			get_type(struct stat d_stat);
 char			*get_gid(struct stat db_stat);
 char			*get_uid(struct stat db_stat);
@@ -167,7 +187,7 @@ void			get_output_width(t_opt *opt);
 
 void			print_failed(t_list **vars);
 t_list			*failed_opendir(char *var);
-t_list			*usage(char *av, int flag);
+t_list			*usage(char *av, int flag, int i);
 
 /*
 ** dev

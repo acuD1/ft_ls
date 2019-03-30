@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/17 14:25:02 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/30 10:28:58 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_vars_db(t_list *vars)
 		printf("* |%d| *\n", i);
 		printf("PRINT | var	= |%s|\n", VARS_DB->var);
 		printf("PRINT | type	= |%c|\n", VARS_DB->type);
-		printf("PRINT | perms	= |%s|\n", VARS_DB->perms);
+		printf("PRINT | perms	= |%s|\n", VARS_DB->chmod);
 		printf("PRINT | links	= |%d|\n", VARS_DB->links);
 		printf("PRINT | uid	= |%s|\n", VARS_DB->uid);
 		printf("PRINT | gid	= |%s|\n", VARS_DB->gid);
