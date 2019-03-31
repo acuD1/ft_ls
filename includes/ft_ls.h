@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/31 12:14:52 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/31 15:37:02 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct		s_mprintf
 typedef	struct		s_opt
 {
 	int				xattr;
+	int				e;
 	int				big_r;
 	int				a;
 	int				l;
@@ -112,7 +113,9 @@ typedef struct		s_xattr
 typedef	struct		s_ls
 {
 	struct s_xattr	*xattr;
+	struct stat		db_stat;
 	acl_t			acl;
+	char			**acl_tab;
 	char			*av;
 	char			*var;
 	char			*chmod;
@@ -172,7 +175,8 @@ char				*get_size_mm(t_ls *db, struct stat db_stat, size_t size);
 int					get_int_pad(int	i);
 char				*get_link(char *var, t_ls *db);
 char				*get_colors(char type, char *perms, t_opt *opt);
-void				get_xattr(t_ls *db, char *av, t_opt *opt);
+void				get_xattr(t_ls *db, char *av);
+void				get_acl(t_ls *db);
 
 /*
 **	Display

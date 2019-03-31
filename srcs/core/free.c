@@ -6,11 +6,27 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 14:09:22 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/31 11:01:55 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/31 15:04:26 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void	free_acl_tab(t_list *vars)
+{
+	int i;
+
+	i = 0;
+	if (VARS_DB->acl_tab)
+	{
+		while (VARS_DB->acl_tab[i])
+		{
+			free(VARS_DB->acl_tab[i]);
+			i++;
+		}
+		free(VARS_DB->acl_tab);
+	}
+}
 
 int		free_vars(t_list *vars)
 {
@@ -21,6 +37,7 @@ int		free_vars(t_list *vars)
 		free(VARS_DB->av);
 		free(VARS_DB->var);
 		acl_free(VARS_DB->acl);
+		free_acl_tab(vars);
 		free(VARS_DB->chmod);
 		free(VARS_DB->uid);
 		free(VARS_DB->gid);

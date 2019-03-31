@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/31 12:11:24 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/31 15:23:12 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	get_val_pad(t_list *vars, t_pad *pad)
 	if (VARS_DB->chmod[10] == '@')
 	{
 		pad->tmp_xattr_p = VARS_DB->xattr_p;
-		pad->tmp_val_p = 5;
+		pad->tmp_val_p = 4;
 		if (pad->tmp_xattr_p > pad->m_xattr_p)
 			pad->m_xattr_p = pad->tmp_xattr_p;
 		if (pad->tmp_val_p > pad->m_val_p)

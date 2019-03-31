@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/30 11:30:00 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/31 13:51:55 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int		fill_opt(t_opt *opt, char av)
 	}
 	if (av == '@')
 		opt->xattr = 1;
+	if (av == 'e')
+		opt->e = 1;
 	return (1);
 }
 

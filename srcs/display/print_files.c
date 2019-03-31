@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/31 12:11:05 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/31 15:32:26 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,19 @@ static void	print_xattr(t_list *vars, t_opt *opt, t_pad *pad)
 			ft_mprintf(1, "        %-*.*s %*.*d\n",
 				pad->m_xattr_p, get_string_pad(&XATTR->xattr[i]),
 				&XATTR->xattr[i],
-				pad->m_val_p, get_int_pad(XATTR->val), XATTR->val);
+				pad->m_val_p, get_int_pad(XATTR->val), XATTR->val,
+				XATTR->val);
 			i += (ft_strlen(&XATTR->xattr[i]) + 1);
 		}
+	}
+}
+
+static void	print_acl(t_list *vars, t_opt *opt)
+{
+	if (opt->e && VARS_DB->acl)
+	{
+		ft_mprintf(2, " 0: group:%s %s %s", VARS_DB->acl_tab[2],
+			VARS_DB->acl_tab[4], VARS_DB->acl_tab[5]);
 	}
 }
 
@@ -76,6 +86,7 @@ void		print_files(t_list *vars, t_opt *opt, t_pad *pad, size_t n_dirs)
 					VARS_DB->mtime, VARS_DB->color, VARS_DB->var, CLR,
 					VARS_DB->link_path);
 			print_xattr(vars, opt, pad);
+			print_acl(vars, opt);
 		}
 		else if (opt->one)
 			ft_mprintf(1, "%s%s%s\n", VARS_DB->color, VARS_DB->var, CLR);
