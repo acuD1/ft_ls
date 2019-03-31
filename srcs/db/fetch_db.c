@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:19:04 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/30 14:39:21 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/31 12:08:46 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_ls	*fetch_db(t_ls *db, char *av, char *name, t_opt *opt)
 	db->link_path = get_link(av, db);
 	db->color = get_colors(db->type, db->chmod, opt);
 	db->normal_p = get_string_pad(db->var);
+	get_xattr(db, av, opt);
 	return (db);
 }

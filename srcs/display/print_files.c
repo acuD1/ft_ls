@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/30 15:55:19 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/03/31 12:11:05 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,22 @@ static void	print_names(t_list *vars, t_opt *opt, t_pad *pad)
 
 static void	print_xattr(t_list *vars, t_opt *opt, t_pad *pad)
 {
-	t_xattr xattr;
 	int		i;
 
 	i = 0;
-	ft_bzero(&xattr, sizeof(t_xattr));
 	if (opt->xattr && VARS_DB->chmod[10] == '@')
 	{
-		xattr.size = listxattr(VARS_DB->av, xattr.tmp, MAX, XATTR_NOFOLLOW);
-		xattr.xattr = ft_strnew(MAX + 1);
-		xattr.size = listxattr(VARS_DB->av, xattr.xattr, MAX, XATTR_NOFOLLOW);
 		i = 0;
-		while (i < xattr.size)
+		while (i < XATTR->size)
 		{
-			xattr.val = getxattr(VARS_DB->av, &xattr.xattr[i], xattr.tmp,
+			XATTR->val = getxattr(VARS_DB->av, &XATTR->xattr[i], XATTR->tmp,
 				NAME_MAX, 0, XATTR_NOFOLLOW | XATTR_SHOWCOMPRESSION);
 			ft_mprintf(1, "        %-*.*s %*.*d\n",
-				pad->m_xattr_p, ft_strlen(&xattr.xattr[i]), &xattr.xattr[i],
-				pad->m_val_p, get_int_pad(xattr.val), xattr.val);
-			i += (ft_strlen(&xattr.xattr[i]) + 1);
+				pad->m_xattr_p, get_string_pad(&XATTR->xattr[i]),
+				&XATTR->xattr[i],
+				pad->m_val_p, get_int_pad(XATTR->val), XATTR->val);
+			i += (ft_strlen(&XATTR->xattr[i]) + 1);
 		}
-		free(xattr.xattr);
 	}
 }
 

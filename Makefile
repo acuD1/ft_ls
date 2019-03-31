@@ -84,6 +84,7 @@ SRC += $(S_PATH)db/get_pad.c
 SRC += $(S_PATH)db/get_size_mm.c
 SRC += $(S_PATH)db/get_link.c
 SRC += $(S_PATH)db/get_colors.c
+SRC += $(S_PATH)db/get_xattr.c
 
 SRC+=$(S_PATH)dev.c
 
