@@ -6,38 +6,50 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/31 13:51:55 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 08:58:21 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int		fill_opt(t_opt *opt, char av)
+static void		fill_opt_line_col(t_opt *opt, char av)
 {
-	if (!(ft_strchr("-Ralrt1@e", av)))
-		return (0);
-	if (av == 'R')
-		opt->big_r = 1;
-	else if (av == 'a')
-		opt->a = 1;
-	else if (av == 'l')
+	if (av == 'l')
 	{
 		opt->l = 1;
 		opt->one = 0;
 	}
-	else if (av == 'r')
-		opt->r = 1;
-	else if (av == 't')
-		opt->t = 1;
-	else if (av == '1')
+	if (av == '1')
 	{
 		opt->one = 1;
 		opt->l = 0;
 	}
+}
+
+static int		fill_opt(t_opt *opt, char av)
+{
+	if (!(ft_strchr("-Ralrt1@eSs", av)))
+		return (0);
+	if (av == 'R')
+		opt->big_r = 1;
+	if (av == 'a')
+		opt->a = 1;
+	if (av == 'r')
+		opt->r = 1;
+	if (av == 't')
+		opt->t = 1;
 	if (av == '@')
 		opt->xattr = 1;
 	if (av == 'e')
 		opt->e = 1;
+	if (av == 's')
+		opt->s = 1;
+	if (av == 'S')
+	{
+		opt->t = 0;
+		opt->size = 1;
+	}
+	fill_opt_line_col(opt, av);
 	return (1);
 }
 

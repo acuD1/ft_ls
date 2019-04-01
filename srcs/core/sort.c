@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:44:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/22 14:26:28 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 08:58:57 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static int		to_cmp(t_list *half_a, t_list *half_b, int i)
 {
 	if (i == 1)
 		return (HALF_B->time_digit - HALF_A->time_digit);
+	if (i == 2)
+		return (HALF_B->size - HALF_A->size);
 	return (ft_strcmp(HALF_A->var, HALF_B->var));
 }
 
@@ -90,6 +92,8 @@ void			sort_vars(t_list **vars, t_opt *opt)
 	merge_sort(vars, to_cmp, 0);
 	if (opt->t == 1)
 		merge_sort(vars, to_cmp, 1);
+	if (opt->size == 1)
+		merge_sort(vars, to_cmp, 2);
 	if (opt->r == 1)
 		ft_lstrev(vars);
 }

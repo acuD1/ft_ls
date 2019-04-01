@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/31 15:37:02 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 09:05:58 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef	struct		s_opt
 	int				r;
 	int				t;
 	int				one;
+	int				size;
+	int				s;
 	int				check_files;
 	int				no_d;
 	int				no_n;
@@ -93,6 +95,7 @@ typedef struct		s_pad
 	int				m_normal_p;
 	int				m_xattr_p;
 	int				m_val_p;
+	int				m_block_p;
 	int				tmp_size_mm_p;
 	int				tmp_uid_p;
 	int				tmp_gid_p;
@@ -100,6 +103,7 @@ typedef struct		s_pad
 	int				tmp_normal_p;
 	int				tmp_xattr_p;
 	int				tmp_val_p;
+	int				tmp_block_p;
 }					t_pad;
 
 typedef struct		s_xattr
@@ -128,6 +132,10 @@ typedef	struct		s_ls
 	int				links;
 	int				block;
 	int				size;
+	int				time_digit;
+	int				n_dirs;
+	int				stop;
+	int				no_print;
 	int				uid_p;
 	int				gid_p;
 	int				size_mm_p;
@@ -135,10 +143,7 @@ typedef	struct		s_ls
 	int				link_p;
 	int				xattr_p;
 	int				val_p;
-	int				time_digit;
-	int				n_dirs;
-	int				stop;
-	int				no_print;
+	int				block_p;
 	char			type;
 }					t_ls;
 

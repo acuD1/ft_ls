@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/31 15:23:12 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 09:11:12 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,32 @@ int		get_int_pad(int i)
 	return (pad);
 }
 
-void	get_val_pad(t_list *vars, t_pad *pad)
+static void	tmp_pad(t_list *vars, t_pad *pad)
 {
-	if (VARS_DB->chmod[10] == '@')
-	{
-		pad->tmp_xattr_p = VARS_DB->xattr_p;
-		pad->tmp_val_p = 4;
-		if (pad->tmp_xattr_p > pad->m_xattr_p)
-			pad->m_xattr_p = pad->tmp_xattr_p;
-		if (pad->tmp_val_p > pad->m_val_p)
-			pad->m_val_p = pad->tmp_val_p;
-	}
+	pad->tmp_xattr_p = VARS_DB->xattr_p;
+	pad->tmp_val_p = 4;
+	pad->tmp_size_mm_p = get_string_pad(VARS_DB->size_mm);
+	pad->tmp_block_p = get_int_pad(VARS_DB->block);
+	pad->tmp_uid_p = get_string_pad(VARS_DB->uid);
+	pad->tmp_gid_p = get_string_pad(VARS_DB->gid);
+	pad->tmp_link_p = get_int_pad(VARS_DB->links);
+	pad->tmp_normal_p = get_string_pad(VARS_DB->var);
 }
 
 void	get_pad(t_list *vars, t_pad *pad)
 {
 	while (vars)
 	{
-		get_val_pad(vars, pad);
-		pad->tmp_size_mm_p = get_string_pad(VARS_DB->size_mm);
+		tmp_pad(vars, pad);
+		if (pad->tmp_xattr_p > pad->m_xattr_p)
+			pad->m_xattr_p = pad->tmp_xattr_p;
+		if (pad->tmp_val_p > pad->m_val_p)
+			pad->m_val_p = pad->tmp_val_p;
 		if ((VARS_DB->type == 'c' && pad->tmp_size_mm_p < 8) ||
 			(VARS_DB->type == 'b' && pad->tmp_size_mm_p < 8))
 			pad->tmp_size_mm_p = 8;
-		pad->tmp_uid_p = get_string_pad(VARS_DB->uid);
-		pad->tmp_gid_p = get_string_pad(VARS_DB->gid);
-		pad->tmp_link_p = get_int_pad(VARS_DB->links);
-		pad->tmp_normal_p = get_string_pad(VARS_DB->var);
+		if (pad->tmp_block_p > pad->m_block_p)
+			pad->m_block_p = pad->tmp_block_p;
 		if (pad->tmp_normal_p > pad->m_normal_p)
 			pad->m_normal_p = pad->tmp_normal_p;
 		if (pad->tmp_size_mm_p > pad->m_size_mm_p)
