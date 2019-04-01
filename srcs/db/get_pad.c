@@ -6,13 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:40:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 09:11:12 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 11:37:31 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		get_string_pad(char *guid)
+int			get_string_pad(char *guid)
 {
 	int	guid_p;
 
@@ -22,7 +22,7 @@ int		get_string_pad(char *guid)
 	return (guid_p);
 }
 
-char	*get_minor_pad(char *min)
+char		*get_minor_pad(char *min)
 {
 	size_t		length;
 	size_t		i;
@@ -41,7 +41,7 @@ char	*get_minor_pad(char *min)
 	return (ft_strrev(tmp));
 }
 
-int		get_int_pad(int i)
+int			get_int_pad(int i)
 {
 	int pad;
 
@@ -68,7 +68,7 @@ static void	tmp_pad(t_list *vars, t_pad *pad)
 	pad->tmp_normal_p = get_string_pad(VARS_DB->var);
 }
 
-void	get_pad(t_list *vars, t_pad *pad)
+void		get_pad(t_list *vars, t_pad *pad)
 {
 	while (vars)
 	{

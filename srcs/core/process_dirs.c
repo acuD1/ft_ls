@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 09:18:36 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 11:28:09 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void			process_dirs(t_list *dirs, t_opt *opt, size_t n)
 	{
 		if (len == max)
 			opt->no_n = 1;
+		opt->reset = 1;
 		print_dirs(DIRS_DB->var, opt, n, len);
 		dirs = dirs->next;
 		len--;

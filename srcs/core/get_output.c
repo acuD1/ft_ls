@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 13:22:02 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 10:42:48 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 11:21:07 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	get_output(t_list **vars, t_opt *opt, t_pad *pad)
 	t_list	*files;
 	size_t	n;
 
+	opt->reset = 1;
 	dirs = fill_vars_dirs(*vars, opt);
 	if (!(files = fill_vars_files(*vars, opt)))
 		opt->check_files = 1;

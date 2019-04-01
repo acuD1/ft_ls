@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 09:08:08 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 11:36:23 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ static void	print_names(t_list *vars, t_opt *opt, t_pad *pad)
 	if (size != opt->width)
 		words += 1;
 	max = words * (pad->m_normal_p + 1);
-	if ((max + pad->m_normal_p) >= opt->width)
+	if (opt->reset || (((max + pad->m_normal_p) >= opt->width)))
 	{
-		write(1, "\n", 1);
 		size = 0;
 		words = 0;
 		max = 0;
+		if (!opt->reset)
+			write(1, "\n", 1);
 	}
 	ft_mprintf(1, "%s%-*.*s", VARS_DB->color, pad->m_normal_p,
 		VARS_DB->normal_p, VARS_DB->var);
@@ -36,6 +37,7 @@ static void	print_names(t_list *vars, t_opt *opt, t_pad *pad)
 		write(1, " ", 1);
 	if (vars->next == NULL)
 		write(1, "\n", 1);
+	opt->reset = 0;
 }
 
 static void	print_xattr(t_list *vars, t_opt *opt, t_pad *pad)
