@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 09:05:58 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 10:42:37 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,8 @@ typedef	struct		s_ls
 t_list				*get_vars(int ac, char **av, t_opt *opt, t_ls *db);
 void				sort_vars(t_list **vars, t_opt *opt);
 void				process_dirs(t_list *dirs, t_opt *opt, size_t n_dirs);
-t_list				*fill_vars_dirs(t_list *vars);
-t_list				*fill_vars_files(t_list *vars);
+t_list				*fill_vars_dirs(t_list *vars, t_opt *opt);
+t_list				*fill_vars_files(t_list *vars, t_opt *opt);
 char				*get_dir_path(char *dir_path, char *dir, char *name);
 int					get_blocks(t_list *vars);
 int					free_vars(t_list *vars);
