@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/30 10:28:58 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 11:53:11 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	print_test(t_list *tmp)
 			printf("dirs = %s\n", ((t_ls*)tmp->content)->var);
 		if (((t_ls*)tmp->content)->type == '-')
 			printf("files = %s\n", ((t_ls*)tmp->content)->var);
+		if (((t_ls*)tmp->content)->type == 'l')
+			printf("links = %s\n", ((t_ls*)tmp->content)->var);
 		tmp = tmp->next;
 	}
 }

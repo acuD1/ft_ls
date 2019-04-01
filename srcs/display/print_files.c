@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 11:36:23 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/01 11:47:33 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	print_acl(t_list *vars, t_opt *opt)
 static void	print_total(t_list *vars, t_opt *opt, size_t n_dirs)
 {
 	if ((n_dirs > 0 && opt->l && !opt->no_d && !opt->empty && !opt->one)
-		|| (opt->s))
+		|| (n_dirs > 0 && opt->s))
 		ft_mprintf(1, "total %d\n", get_blocks(vars));
 }
 
