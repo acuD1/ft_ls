@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:44:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 13:49:47 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/02 10:32:34 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_list	*merge_lst(t_list *half_a, t_list *half_b
 	return (vars);
 }
 
-void		merge_sort(t_list **vars, int (*to_cmp)(t_list *, t_list *, int)
+static void		merge_sort(t_list **vars, int (*to_cmp)(t_list *, t_list *, int)
 					, int i)
 {
 	t_list *half_a;
@@ -95,10 +95,10 @@ static int		to_cmp(t_list *half_a, t_list *half_b, int i)
 void			sort_vars(t_list **vars, t_opt *opt)
 {
 	merge_sort(vars, to_cmp, 0);
-	if (opt->t == 1)
-		merge_sort(vars, to_cmp, 1);
 	if (opt->size == 1)
 		merge_sort(vars, to_cmp, 2);
+	if (opt->t == 1)
+		merge_sort(vars, to_cmp, 1);
 	if (opt->r == 1)
 		ft_lstrev(vars);
 }

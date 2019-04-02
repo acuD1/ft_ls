@@ -6,13 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:47:42 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 08:58:21 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/02 10:16:11 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void		fill_opt_line_col(t_opt *opt, char av)
+static void		fill_opt_anul(t_opt *opt, char av)
 {
 	if (av == 'l')
 	{
@@ -24,6 +24,15 @@ static void		fill_opt_line_col(t_opt *opt, char av)
 		opt->one = 1;
 		opt->l = 0;
 	}
+	if (av == 'S')
+	{
+		opt->t = 0;
+		opt->size = 1;
+	}
+	if (av == 't')
+		opt->t = 1;
+	if (opt->size)
+		opt->t = 0;
 }
 
 static int		fill_opt(t_opt *opt, char av)
@@ -36,20 +45,13 @@ static int		fill_opt(t_opt *opt, char av)
 		opt->a = 1;
 	if (av == 'r')
 		opt->r = 1;
-	if (av == 't')
-		opt->t = 1;
 	if (av == '@')
 		opt->xattr = 1;
 	if (av == 'e')
 		opt->e = 1;
 	if (av == 's')
 		opt->s = 1;
-	if (av == 'S')
-	{
-		opt->t = 0;
-		opt->size = 1;
-	}
-	fill_opt_line_col(opt, av);
+	fill_opt_anul(opt, av);
 	return (1);
 }
 
@@ -80,7 +82,7 @@ void			check_first_arg(char **av, int i, t_opt *opt)
 	if (!(av[i]))
 		opt->no_args = 1;
 	if (lstat(av[i], &db_stat))
-		opt->lstat_first_arg = 1;
+		opt->not_found = 1;
 }
 
 t_list			*get_vars(int ac, char **av, t_opt *opt, t_ls *db)

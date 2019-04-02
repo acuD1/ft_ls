@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:20:28 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 11:53:11 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/02 09:29:35 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	print_opt(t_opt opt)
 PRINT | opt.a = |%d|\n\
 PRINT | opt.l = |%d|\n\
 PRINT | opt.r = |%d|\n\
+PRINT | opt.s = |%d|\n\
+PRINT | opt.S = |%d|\n\
 PRINT | opt.t = |%d|\n",\
-	opt.big_r, opt.a, opt.l, opt.r, opt.t);
+	opt.big_r, opt.a, opt.l, opt.r, opt.s, opt.size, opt.t);
 }
 
 void	print_vars_db(t_list *vars)

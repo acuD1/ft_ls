@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/30 11:29:54 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/02 10:32:46 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list	*usage(char *av, int flag, int i)
 	return (NULL);
 }
 
-void	print_failed(t_list **vars)
+void	print_failed(t_list **vars, t_opt *opt)
 {
 	struct stat	db_stat;
 	t_list		*tmp;
@@ -42,14 +42,15 @@ void	print_failed(t_list **vars)
 	tmp = *vars;
 	while (tmp)
 	{
-		if (TMP_DB->type == '?')
+		if (lstat(TMP_DB->av, &db_stat))
 		{
-			lstat(TMP_DB->var, &db_stat);
 			ft_putstr_fd("ft_ls: ", 2);
-			ft_putstr_fd(TMP_DB->var, 2);
+			ft_putstr_fd(TMP_DB->av, 2);
 			ft_putstr_fd(": ", 2);
 			perror(0);
 			strerror(errno);
+			TMP_DB->type = '?';
+			opt->not_found = 1;
 		}
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/01 13:26:32 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/02 10:32:18 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef	struct		s_opt
 	int				check_files;
 	int				no_d;
 	int				no_n;
-	int				lstat_first_arg;
+	int				not_found;
 	int				empty;
 	int				failed;
 	int				no_args;
@@ -151,8 +151,6 @@ typedef	struct		s_ls
 /*
 **	Core
 */
-void		merge_sort(t_list **vars, int (*to_cmp)(t_list *, t_list *, int)
-					, int i);
 
 t_list				*get_vars(int ac, char **av, t_opt *opt, t_ls *db);
 void				sort_vars(t_list **vars, t_opt *opt);
@@ -202,7 +200,7 @@ void				get_output_width(t_opt *opt);
 **	error_handlers
 */
 
-void				print_failed(t_list **vars);
+void				print_failed(t_list **vars, t_opt *opt);
 t_list				*failed_opendir(char *var);
 t_list				*usage(char *av, int flag, int i);
 
