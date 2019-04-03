@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/03 09:30:12 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/03 11:18:17 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@ static t_list	*fetch_dir_content(char *var, DIR *content, t_opt *opt)
 
 	if (!(db = (t_ls*)malloc(sizeof(t_ls))))
 		return (0);
+	dir_content = NULL;
 	dir_path = ft_strnew(MAX);
 	while ((dir = readdir(content)))
 	{
 		dir_path = get_dir_path(dir_path, var, dir->d_name);
 		if (!(opt->a) && dir->d_name[0] == '.')
 			continue;
-		ft_lstpushback(&dir_content,
-			ft_lstnew(fetch_db(db, dir_path, dir->d_name, opt), sizeof(t_ls)));
+		lstat(dir_path, &db->db_stat);
+		if (get_type(db->db_stat) != '?')
+			ft_lstpushback(&dir_content,
+				ft_lstnew(fetch_db(db, dir_path, dir->d_name, opt),
+					sizeof(t_ls)));
 		continue;
 	}
 	free(dir_path);
