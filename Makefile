@@ -87,8 +87,6 @@ SRC += $(S_PATH)db/get_colors.c
 SRC += $(S_PATH)db/get_xattr.c
 SRC += $(S_PATH)db/get_acl.c
 
-SRC+=$(S_PATH)dev.c
-
 # Objects and Headers
 
 OBJ = $(patsubst $(S_PATH)%.c, $(O_PATH)%.o, $(SRC))

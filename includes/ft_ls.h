@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/03 10:47:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/03 12:49:56 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,13 +205,5 @@ void				get_output_width(t_opt *opt);
 void				print_failed(t_list **vars, t_opt *opt);
 t_list				*failed_opendir(char *var, t_opt *opt);
 t_list				*usage(char *av, int flag, int i);
-
-/*
-** dev
-*/
-
-void				print_test(t_list *tmp);
-void				print_opt(t_opt opt);
-void				print_vars_db(t_list *vars);
 
 #endif
