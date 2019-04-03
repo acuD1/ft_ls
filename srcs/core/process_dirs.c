@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/02 10:16:02 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/03 09:30:12 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static t_list	*get_dir_content(char *var, t_opt *opt)
 	if (!(content = opendir(var)))
 	{
 		opt->no_d = 1;
-		if (!opt->no_n)
+		if (!opt->no_n && opt->l)
 			write(1, "\n", 1);
-		return (failed_opendir(var));
+		return (failed_opendir(var, opt));
 	}
 	dir_content = fetch_dir_content(var, content, opt);
 	if (!(ft_lstlen(dir_content)))
@@ -62,10 +62,11 @@ static void		format_output(t_opt *opt, size_t n_dirs, char *var)
 		write(1, "\n", 1);
 	opt->no_n = 0;
 	if (opt->not_found && !opt->no_args)
-		ft_mprintf(1, "%s:\n", var);
+		ft_mprintf(1, "?%s:\n", var);
 	else if (!(opt->check_files) || n_dirs > 1)
 		if (!opt->no_d)
 			ft_mprintf(1, "%s%s:\n", CLR, var);
+	opt->no_args = 0;
 	opt->check_files = 0;
 }
 
@@ -105,6 +106,7 @@ void			process_dirs(t_list *dirs, t_opt *opt, size_t n)
 
 	len = ft_lstlen(dirs);
 	max = len;
+	opt->arg = 0;
 	while (dirs != NULL)
 	{
 		if (len == max)

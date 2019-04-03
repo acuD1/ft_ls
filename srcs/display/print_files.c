@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:52:17 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/02 10:23:47 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/02 15:41:45 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	print_names(t_list *vars, t_opt *opt, t_pad *pad)
 	if (vars->next == NULL)
 		write(1, "\n", 1);
 	opt->reset = 0;
+//	printf("D\n");
 }
 
 static void	print_xattr(t_list *vars, t_opt *opt, t_pad *pad)

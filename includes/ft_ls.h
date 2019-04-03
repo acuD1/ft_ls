@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/02 10:32:18 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/03 10:03:19 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef	struct		s_opt
 	int				empty;
 	int				failed;
 	int				no_args;
+	int				arg;
 	int				width;
 	int				reset;
 }					t_opt;
@@ -137,6 +138,7 @@ typedef	struct		s_ls
 	int				n_dirs;
 	int				stop;
 	int				no_print;
+	int				no_link;
 	int				uid_p;
 	int				gid_p;
 	int				size_mm_p;
@@ -201,7 +203,7 @@ void				get_output_width(t_opt *opt);
 */
 
 void				print_failed(t_list **vars, t_opt *opt);
-t_list				*failed_opendir(char *var);
+t_list				*failed_opendir(char *var, t_opt *opt);
 t_list				*usage(char *av, int flag, int i);
 
 /*
