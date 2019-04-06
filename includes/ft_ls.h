@@ -6,14 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/06 11:00:03 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/06 12:19:37 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 # include "../libft/includes/libft.h"
-# include <stdarg.h>
 # include <stdlib.h>
 # include <dirent.h>
 # include <sys/types.h>
@@ -53,16 +52,6 @@
 # define NFBLU "\x1B[3m\x1B[34m"
 # define NFBLUB "\x1B[3m\x1B[96m"
 # define NFGRE "\x1B[3m\x1B[32m"
-
-typedef struct		s_mprintf
-{
-	int				pad;
-	int				indent;
-	int				width;
-	int				neg;
-	int				diff;
-	int				space;
-}					t_mprintf;
 
 typedef	struct		s_opt
 {
@@ -167,9 +156,15 @@ int					free_vars(t_list *vars);
 int					free_lst(t_list *lst);
 void				get_output(t_list **vars, t_opt *opt, t_pad *pad);
 void				dirs_free(t_list *to_free, t_list *dir_content, t_opt *opt);
+void				print_files(t_list *vars, t_opt *opt,
+						t_pad *pad, size_t n_dirs);
+void				get_output_width(t_opt *opt);
+void				print_failed(t_list **vars, t_opt *opt);
+t_list				*failed_opendir(char *var, t_opt *opt);
+t_list				*usage(char *av, int flag, int i);
 
 /*
-**	db
+**	DB
 */
 
 t_ls				*fetch_db(t_ls *db, char *av, char *name, t_opt *opt);
@@ -187,25 +182,5 @@ char				*get_link(char *var, t_ls *db);
 char				*get_colors(char type, char *perms, t_opt *opt);
 void				get_xattr(t_ls *db, char *av);
 void				get_acl(t_ls *db);
-
-/*
-**	Display
-*/
-
-void				ft_mprintf(int fd, const char *str, ...);
-int					buff_fill_int(int arg, char *buff, t_mprintf *s_mpf);
-int					buff_fill_char(int arg, char *buff, t_mprintf *s_mpf);
-int					buff_fill_str(char *arg, char *buff, t_mprintf *s_mpf);
-void				print_files(t_list *vars, t_opt *opt,
-						t_pad *pad, size_t n_dirs);
-void				get_output_width(t_opt *opt);
-
-/*
-**	error_handlers
-*/
-
-void				print_failed(t_list **vars, t_opt *opt);
-t_list				*failed_opendir(char *var, t_opt *opt);
-t_list				*usage(char *av, int flag, int i);
 
 #endif

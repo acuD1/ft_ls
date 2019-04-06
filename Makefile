@@ -54,10 +54,9 @@ O_PATH = build/objs/
 L_PATH = libft/
 
 DB_PATH = build/objs/db/
-DP_PATH = build/objs/display/
 CR_PATH = build/objs/core/
 
-OBJP = "$(O_PATH){core,display,db}*.o"
+OBJP = "$(O_PATH){core,display}*.o"
 
 # Files
 
@@ -70,10 +69,7 @@ SRC += $(S_PATH)core/tools.c
 SRC += $(S_PATH)core/errors_handler.c
 SRC += $(S_PATH)core/process_dirs.c
 SRC += $(S_PATH)core/get_output.c
-
-SRC += $(S_PATH)display/ft_mprintf.c
-SRC += $(S_PATH)display/mprintf_tools.c
-SRC += $(S_PATH)display/print_files.c
+SRC += $(S_PATH)core/print_files.c
 
 SRC += $(S_PATH)db/fetch_db.c
 SRC += $(S_PATH)db/get_type.c
@@ -167,10 +163,6 @@ $(CR_PATH):
 	@$(MKDIR) $(CR_PATH)
 	@$(ECHO) $(MKSHW) $(CR_PATH)
 
-$(DP_PATH):
-	@$(MKDIR) $(DP_PATH)
-	@$(ECHO) $(MKSHW) $(DP_PATH)
-
 $(DB_PATH):
 	@$(MKDIR) $(DB_PATH)
 	@$(ECHO) $(MKSHW) $(DB_PATH)
@@ -192,8 +184,6 @@ fclean: libc
 	@$(ECHO) $(RMSHW) $(OBJP)
 	@$(RM_RF) $(CR_PATH)
 	@$(ECHO) $(RMSHW) $(CR_PATH)
-	@$(RM_RF) $(DP_PATH)
-	@$(ECHO) $(RMSHW) $(DP_PATH)
 	@$(RM_RF) $(DB_PATH)
 	@$(ECHO) $(RMSHW) $(DB_PATH)
 	@$(RM_RF) $(O_PATH)
