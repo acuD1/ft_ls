@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/03 12:48:34 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/06 11:13:38 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_list	*usage(char *av, int flag, int i)
 			{
 				ft_mprintf(1, "ft_ls: illegal option -- %c\n", av[i]);
 				ft_putendl("usage : ./ft_ls [-Ralrt1@eSs] [file ...]");
+				break ;
 			}
 			i++;
 		}
@@ -59,13 +60,15 @@ void	print_failed(t_list **vars, t_opt *opt)
 
 t_list	*failed_opendir(char *var, t_opt *opt)
 {
-	if (opt->l)
-	{
+	if (opt->only_one == 0)
 		ft_mprintf(1, "%s:\n", var);
-		ft_putstr_fd("ft_ls: ", 2);
+	ft_putstr_fd("ft_ls: ", 2);
+	if (!opt->arg)
+		ft_putstr_fd(var, 2);
+	else
 		ft_putstr_fd(var + ft_strnrchr(var, '/'), 2);
-		ft_putstr_fd(": ", 2);
-		perror(0);
-	}
+	ft_putstr_fd(": ", 2);
+	perror(0);
+	opt->no_print = 1;
 	return (NULL);
 }

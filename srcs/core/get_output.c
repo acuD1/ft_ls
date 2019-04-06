@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 13:22:02 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/03 10:45:00 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/06 10:55:27 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	get_output(t_list **vars, t_opt *opt, t_pad *pad)
 	size_t	n;
 
 	opt->reset = 1;
-	opt->arg = 1;
 	dirs = fill_vars_dirs(*vars, opt);
 	if (!(files = fill_vars_files(*vars, opt)))
 		opt->check_files = 1;
-	n = ft_lstlen(dirs);
+	if ((n = ft_lstlen(dirs)) == 1)
+		opt->only_one = 1;
 	if (files)
 	{
 		ft_bzero(pad, sizeof(t_pad));

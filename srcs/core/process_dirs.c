@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 14:24:00 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/03 11:18:17 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/06 11:16:53 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ static t_list	*get_dir_content(char *var, t_opt *opt)
 	t_list	*dir_content;
 
 	opt->empty = 0;
+	opt->no_print = 0;
 	if (!(content = opendir(var)))
 	{
 		opt->no_d = 1;
-		if (!opt->no_n && opt->l)
+		if (!opt->no_n)
 			write(1, "\n", 1);
 		return (failed_opendir(var, opt));
 	}
+	opt->only_one = 0;
+	opt->arg = 1;
 	dir_content = fetch_dir_content(var, content, opt);
 	if (!(ft_lstlen(dir_content)))
 		opt->empty = 1;
@@ -65,8 +68,8 @@ static void		format_output(t_opt *opt, size_t n_dirs, char *var)
 	if (!opt->no_n && opt->no_d == 0)
 		write(1, "\n", 1);
 	opt->no_n = 0;
-	if (opt->not_found && !opt->no_args)
-		ft_mprintf(1, "?%s:\n", var);
+	if (opt->not_found && !opt->no_args && !opt->no_print)
+		ft_mprintf(1, "%s:\n", var);
 	else if (!(opt->check_files) || n_dirs > 1)
 		if (!opt->no_d)
 			ft_mprintf(1, "%s%s:\n", CLR, var);
@@ -110,9 +113,9 @@ void			process_dirs(t_list *dirs, t_opt *opt, size_t n)
 
 	len = ft_lstlen(dirs);
 	max = len;
-	opt->arg = 0;
 	while (dirs != NULL)
 	{
+		opt->arg = 0;
 		if (len == max)
 			opt->no_n = 1;
 		opt->reset = 1;

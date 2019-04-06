@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 08:37:29 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/03 12:49:56 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/06 11:00:03 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef	struct		s_opt
 	int				arg;
 	int				width;
 	int				reset;
+	int				only_one;
+	int				no_print;
 }					t_opt;
 
 typedef struct		s_pad
