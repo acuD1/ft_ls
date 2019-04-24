@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 12:51:14 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/06 11:13:38 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:33:09 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	print_failed(t_list **vars, t_opt *opt)
 			ft_putstr_fd(TMP_DB->av, 2);
 			ft_putstr_fd(": ", 2);
 			perror(0);
-			strerror(errno);
 			TMP_DB->type = '?';
 			opt->not_found = 1;
 		}

@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 14:23:32 by arsciand          #+#    #+#             */
-/*   Updated: 2019/03/30 11:14:30 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:37:40 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void	get_special_chmod(char *chmod, struct stat db_stat)
 {
-	chmod[3] = db_stat.st_mode & S_IXUSR ? 'x' : '-';
-	chmod[3] = db_stat.st_mode & S_ISUID ? 'S' : chmod[3];
-	chmod[3] = db_stat.st_mode & S_IXUSR &&
-					db_stat.st_mode & S_ISUID ? 's' : chmod[3];
-	chmod[6] = db_stat.st_mode & S_IXGRP ? 'x' : '-';
-	chmod[6] = db_stat.st_mode & S_ISGID ? 'S' : chmod[6];
-	chmod[6] = db_stat.st_mode & S_IXGRP &&
-					db_stat.st_mode & S_ISGID ? 's' : chmod[6];
-	chmod[9] = db_stat.st_mode & S_IXOTH ? 'x' : '-';
-	chmod[9] = db_stat.st_mode & S_ISVTX ? 'T' : chmod[9];
-	chmod[9] = db_stat.st_mode & S_IXOTH &&
-					db_stat.st_mode & S_ISVTX ? 't' : chmod[9];
+	chmod[3] = (db_stat.st_mode & S_IXUSR) ? 'x' : '-';
+	chmod[3] = (db_stat.st_mode & S_ISUID) ? 'S' : chmod[3];
+	chmod[3] = (db_stat.st_mode & S_IXUSR) &&
+					(db_stat.st_mode & S_ISUID) ? 's' : chmod[3];
+	chmod[6] = (db_stat.st_mode & S_IXGRP) ? 'x' : '-';
+	chmod[6] = (db_stat.st_mode & S_ISGID) ? 'S' : chmod[6];
+	chmod[6] = (db_stat.st_mode & S_IXGRP) &&
+					(db_stat.st_mode & S_ISGID) ? 's' : chmod[6];
+	chmod[9] = (db_stat.st_mode & S_IXOTH) ? 'x' : '-';
+	chmod[9] = (db_stat.st_mode & S_ISVTX) ? 'T' : chmod[9];
+	chmod[9] = (db_stat.st_mode & S_IXOTH) &&
+					(db_stat.st_mode & S_ISVTX) ? 't' : chmod[9];
 }
 
 char		*get_chmod(t_ls *db, struct stat db_stat, char *av)

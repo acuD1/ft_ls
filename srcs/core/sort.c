@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 14:44:56 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/02 10:32:34 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:37:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		split_lst(t_list *vars, t_list **half_a, t_list **half_b)
 
 	current = vars;
 	next_current = vars->next;
-	if (!(vars) || !(vars->next))
+	if (vars == NULL || !(vars->next))
 	{
 		*half_a = vars;
 		*half_b = NULL;
